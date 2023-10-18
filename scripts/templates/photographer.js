@@ -16,9 +16,9 @@ function photographerTemplate(data) {
         h2.textContent = name;
         cityWrap.textContent = city;
         taglineWrap.textContent = tagline;
-        priceWrap.textContent = `${price} /jour`;
+        priceWrap.textContent = `${price} €/jour`;
 
-        linkPhotographer.setAttribute("href", "#")
+        linkPhotographer.setAttribute("href", "photographer.html")
         linkPhotographer.appendChild(img, h2);
         linkPhotographer.appendChild(h2);
 
@@ -29,6 +29,6 @@ function photographerTemplate(data) {
 
 
         return (article);
-    }
+    } 
     return { name, picture, city, tagline, price, getUserCardDOM }
 }

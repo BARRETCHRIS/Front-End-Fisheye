@@ -2,6 +2,7 @@
 
 a{
     text-decoration: none;
+    color: inherit;
 }
 
 body {
@@ -36,21 +37,33 @@ h1 {
 }
 
 .photographer_section article {
-    justify-self: center;
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
+    justify-content: space-between;
+    align-items: center;  
 }
 
-.photographer_section article h2 {
+.photographer_section article a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 350px;
+}
+
+.photographer_section article a h2 {
     color: #D3573C;
     font-size: 36px;
+    text-align: center;
 }
 
-.photographer_section article img {
+.photographer_section article a img {
     height: 200px;
     width: 200px;
     border-radius: 50%;
     object-fit: cover;
+}
+
+.photographer_section article p{
+    text-align: center;
+    margin: 5px;
 }
