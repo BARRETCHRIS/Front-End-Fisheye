@@ -10,7 +10,7 @@ async function getPhotographers() {
     const media= await answer.json();
 
     const medias = Array.from(media.media);
-    const photographers = Array.from(media.photographers)
+    const photographers = Array.from(media.photographers);
     console.log(medias, photographers);
 
     // et bien retourner le tableau photographers seulement une fois récupéré
@@ -19,6 +19,7 @@ async function getPhotographers() {
 
 async function displayData(medias, photographers) {
         const PortfolioSection = document.querySelector(".portfolio_section");
+        const gallery = document.querySelector(".gallery");
 
         
     }
