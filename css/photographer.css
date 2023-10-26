@@ -3,9 +3,27 @@
 }
 
 .photograph-header {
-    background-color: #FAFAFA;
+    /*background-color: #FAFAFA;*/
+    background-color: #312E2E;
     height: 300px;
     margin: 0 100px;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+}
+
+.photograph-header div{
+    width: 32%;
+}
+
+.portrait{
+    text-align: right;
+}
+
+.surname{
+    text-align: left;
 }
 
 .contact_button {

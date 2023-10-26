@@ -1,11 +1,9 @@
-//Mettre le code JavaScript lié à la page photographer.html
-
 const urlParams = new URLSearchParams(window.location.search);
 const photographerId = urlParams.get('id');
 
 console.log(photographerId)
 
-async function getPhotographers() {
+async function getPhotographerPortfolio() {
     const answer = await fetch("data/photographers.json"); 
     const media= await answer.json();
 
@@ -13,21 +11,19 @@ async function getPhotographers() {
     const photographers = Array.from(media.photographers);
     console.log(medias, photographers);
 
-    // et bien retourner le tableau photographers seulement une fois récupéré
     return medias + photographers;    
 }
 
-async function displayData(medias, photographers) {
-        const PortfolioSection = document.querySelector(".portfolio_section");
-        const gallery = document.querySelector(".gallery");
-
-        
-    }
+function displayData(medias, photographers) {
+    const photographHeader = document.querySelector("photograph-header");
+    const PortfolioSection = document.querySelector(".portfolio_section");
+    const gallery = document.querySelector(".gallery");
+}
 
 async function init() {
     // Récupère les datas des photographes
-    const { photographers } = await getPhotographers();
-    displayData(photographers);
+    const { photographerPortfolio } = await getPhotographerPortfolio();
+    displayData(photographerPortfolio);
 }
 
 init();
