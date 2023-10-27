@@ -1,11 +1,18 @@
 function photographerGalleryTemplate(data){
-    const {name, city, tagline, portrait} = data;
-
+    const {name, city, tagline, portrait, title, likes, image, video,} = data;
+    console.log(data);
     const picture = `assets/photographers/${portrait}`;
 
     function getPhotographCardDOM(){
+
+        const cardContainer = document.createElement('div');
+        cardContainer.classList.add('card-container');
+
         const surnameWrap = document.querySelector('.surname');
+        const btnWrap = document.querySelector('.btn-wrap');
         const portraitWrap = document.querySelector('.portrait');
+
+
         const h1 = document.createElement('h1');
         const img = document.createElement( 'img' );
         img.setAttribute("src", picture);
@@ -22,10 +29,16 @@ function photographerGalleryTemplate(data){
 
         portraitWrap.appendChild(img);
 
+        cardContainer.appendChild(surnameWrap);
+        cardContainer.appendChild(btnWrap);
+        cardContainer.appendChild(portraitWrap);
 
-
-        return(surnameWrap + portraitWrap);    
+        return cardContainer;    
     }
 
+    function getGalleryCardDOM(){
+
+    }
+    
     return {name, city, tagline, portrait, getPhotographCardDOM}
 }

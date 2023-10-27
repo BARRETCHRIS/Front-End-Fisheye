@@ -14,13 +14,30 @@
     text-align: center;
 }
 
-.photograph-header div{
-    width: 32%;
+.card-container{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.portrait{
-    text-align: right;
+.surname, .btn-wrap, .portrait{
+    width: 32%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin: 30px ;
 }
+
+.surname{
+    text-align: left;
+    height: 100px;
+}
+
+.portrait {
+    align-items: flex-end;
+}
+
 
 .portrait img{
     height: 200px;
@@ -29,14 +46,29 @@
     object-fit: cover;
 }
 
-.surname{
-    text-align: left;
+.gallery {
+    margin: 0 100px;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+
+}
+
+.gallery div{
+    width: 30%;
+}
+
+.gallery div img{
+    width: 150px;
 }
 
 .contact_button {
     font-size: 20px;
     font-weight: bold;
     color: white;
+    margin: auto;
     padding: 11px;
     width: 170px;
     height: 70px;
