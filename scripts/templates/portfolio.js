@@ -43,12 +43,26 @@ function photographerGalleryTemplate(data){
     mediaInfoWrap.classList.add('media-info');
 
     const mediaTitle = document.createElement('h2');
+    mediaTitle.classList.add('media-title');
     mediaTitle.textContent = mediaItem.title;
 
     const mediaLikes = document.createElement('p');
-    mediaLikes.innerHTML = `${mediaItem.likes} <i class="fa-solid fa-heart"></i>`;
+    mediaLikes.classList.add('likes');
+    const likesText = document.createElement('span');
+    likesText.classList.add('likes-nbr');
+    likesText.textContent = mediaItem.likes;
+    const heartIcon = document.createElement('i');
+    heartIcon.classList.add('fa-solid', 'fa-heart');
+    mediaLikes.appendChild(likesText);
+    mediaLikes.appendChild(heartIcon);
 
-    const mediaDate = mediaItem.date;
+    // mediaLikes.addEventListener('click', () => incrementLikes(mediaItem.id));
+
+    const mediaDate = document.createElement('p');
+    mediaDate.classList.add('media-date');
+    mediaDate.textContent = mediaItem.date;
+
+    console.log (mediaDate);
 
     if (mediaItem.image) {
       const mediaImage = document.createElement('img');
@@ -63,6 +77,7 @@ function photographerGalleryTemplate(data){
 
     mediaInfoWrap.appendChild(mediaTitle);
     mediaInfoWrap.appendChild(mediaLikes);
+    mediaInfoWrap.appendChild(mediaDate);
     mediaWrap.appendChild(mediaInfoWrap);
 
     return mediaWrap;

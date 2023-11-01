@@ -169,3 +169,12 @@ form input {
     padding-top: 13px;
     width: 20%;
 }
+
+.likes-nbr{
+    margin-right: 5px;
+}
+
+.media-date {
+  position: absolute;
+  left: -9999px;
+}
