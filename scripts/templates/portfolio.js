@@ -1,5 +1,5 @@
 function photographerGalleryTemplate(data){
-    const {name, city, tagline, portrait} = data;
+    const {name, city, tagline, portrait, price} = data;
     const picture = `assets/photographers/${portrait}`;
 
     function getPhotographCardDOM(){
@@ -35,54 +35,72 @@ function photographerGalleryTemplate(data){
         return cardContainer;    
     }
 
-    function getGalleryCardDOM(mediaItem) {
-    const mediaWrap = document.createElement('div');
-    mediaWrap.classList.add('media-card');
+    function getGalleryCardDOM(mediaItem, index) {
+      const mediaWrap = document.createElement('div');
+      mediaWrap.classList.add('media-card');
+      mediaWrap.setAttribute('data-index', index);
 
-    const mediaInfoWrap = document.createElement('div');
-    mediaInfoWrap.classList.add('media-info');
+      const mediaInfoWrap = document.createElement('div');
+      mediaInfoWrap.classList.add('media-info');
 
-    const mediaTitle = document.createElement('h2');
-    mediaTitle.classList.add('media-title');
-    mediaTitle.textContent = mediaItem.title;
+      const mediaTitle = document.createElement('h2');
+      mediaTitle.classList.add('media-title');
+      mediaTitle.textContent = mediaItem.title;
 
-    const mediaLikes = document.createElement('p');
-    mediaLikes.classList.add('likes');
-    const likesText = document.createElement('span');
-    likesText.classList.add('likes-nbr');
-    likesText.textContent = mediaItem.likes;
-    const heartIcon = document.createElement('i');
-    heartIcon.classList.add('fa-solid', 'fa-heart');
-    mediaLikes.appendChild(likesText);
-    mediaLikes.appendChild(heartIcon);
+      const mediaLikes = document.createElement('p');
+      mediaLikes.classList.add('likes');
+      const likesText = document.createElement('span');
+      likesText.classList.add('likes-nbr');
+      likesText.textContent = mediaItem.likes;
+      const heartIcon = document.createElement('i');
+      heartIcon.classList.add('fa-solid', 'fa-heart');
+      mediaLikes.appendChild(likesText);
+      mediaLikes.appendChild(heartIcon);
 
-    // mediaLikes.addEventListener('click', () => incrementLikes(mediaItem.id));
+      // mediaLikes.addEventListener('click', () => incrementLikes(mediaItem.id));
 
-    const mediaDate = document.createElement('p');
-    mediaDate.classList.add('media-date');
-    mediaDate.textContent = mediaItem.date;
+      const mediaDate = document.createElement('p');
+      mediaDate.classList.add('media-date');
+      mediaDate.textContent = mediaItem.date;
 
-    console.log (mediaDate);
+      if (mediaItem.image) {
+        const mediaImage = document.createElement('img');
+        mediaImage.setAttribute('src', `../assets/images/${name}/${mediaItem.image}`);
+        mediaWrap.appendChild(mediaImage);
+      } else if (mediaItem.video) {
+        const mediaVideo = document.createElement('video');
+        mediaVideo.setAttribute('src', `../assets/images/${name}/${mediaItem.video}`);
+        mediaVideo.setAttribute('controls', true);
+        mediaWrap.appendChild(mediaVideo);
+      }
 
-    if (mediaItem.image) {
-      const mediaImage = document.createElement('img');
-      mediaImage.setAttribute('src', `../assets/images/${name}/${mediaItem.image}`);
-      mediaWrap.appendChild(mediaImage);
-    } else if (mediaItem.video) {
-      const mediaVideo = document.createElement('video');
-      mediaVideo.setAttribute('src', `../assets/images/${name}/${mediaItem.video}`);
-      mediaVideo.setAttribute('controls', true);
-      mediaWrap.appendChild(mediaVideo);
-    }
+      mediaInfoWrap.appendChild(mediaTitle);
+      mediaInfoWrap.appendChild(mediaLikes);
+      mediaInfoWrap.appendChild(mediaDate);
+      mediaWrap.appendChild(mediaInfoWrap);
 
-    mediaInfoWrap.appendChild(mediaTitle);
-    mediaInfoWrap.appendChild(mediaLikes);
-    mediaInfoWrap.appendChild(mediaDate);
-    mediaWrap.appendChild(mediaInfoWrap);
+      return mediaWrap;
+  }
 
-    return mediaWrap;
+  function getTotalLikesDOM(media) {
+
+    const totalLikes = media.reduce((total, mediaItem) => total + mediaItem.likes, 0);
+
+    const infosBottomPage = document.createElement('div');
+    infosBottomPage.classList.add('infos-bottom');
+    const totalLikesWrap = document.createElement('span');
+    totalLikesWrap.classList.add('total-likes');
+    totalLikesWrap.innerHTML = `${totalLikes} <i class="fa-solid fa-heart"></i>`;
+    const bottomPriceWrap = document.createElement('span');
+    bottomPriceWrap.classList.add('bottom-price');
+    bottomPriceWrap.textContent = `${price}€ /jour`;
+
+    infosBottomPage.appendChild(totalLikesWrap);
+    infosBottomPage.appendChild(bottomPriceWrap);
+
+    return infosBottomPage;
   }
     
-    return { name, city, tagline, portrait, getPhotographCardDOM, getGalleryCardDOM }
+  return { name, city, tagline, portrait, price, getPhotographCardDOM, getGalleryCardDOM, getTotalLikesDOM }
 
 }

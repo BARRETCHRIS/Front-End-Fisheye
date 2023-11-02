@@ -1,8 +1,6 @@
 const urlParams = new URLSearchParams(window.location.search);
 const photographerId = urlParams.get('id');
 
-// let likesData = {};
-
 async function getPhotographerData(photgapherId) {
     const answer = await fetch("data/photographers.json"); 
     const data= await answer.json();
@@ -25,12 +23,14 @@ async function init() {
 
     const gallery = document.querySelector('.gallery');
 
-    media.forEach((mediaItem) => {
-    const mediaCard = photographTemplate.getGalleryCardDOM(mediaItem);
+    media.forEach((mediaItem, index) => {
+    const mediaCard = photographTemplate.getGalleryCardDOM(mediaItem, index);
     gallery.appendChild(mediaCard);
   }); 
 
-  // const gallery = document.querySelector('.gallery');
+  const totalLikesDOM = photographTemplate.getTotalLikesDOM(media);
+  gallery.appendChild(totalLikesDOM);
+
   const mediaItems = gallery.querySelectorAll('.media-card');
 
   mediaItems.forEach(mediaItem => {
@@ -40,7 +40,6 @@ async function init() {
       let likesCount = parseInt(likesElement.textContent);
       likesCount++;
       likesNbr.textContent = likesCount;
-
     });
   });
 
@@ -53,9 +52,12 @@ function filterMedia() {
   const gallery = document.querySelector('.gallery');
   const mediaItems = gallery.querySelectorAll('.media-card');
 
-  const sortedMediaItems = Array.from(mediaItems).sort((a, b) => {
+  const sortedMediaItems = Array.from(mediaItems)
+  sortedMediaItems.sort((a, b) => {
     if (filterValue === 'none'){
-      location.reload();
+      const indexA = parseInt(a.getAttribute('data-index'));
+      const indexB = parseInt(b.getAttribute('data-index'));
+      return indexA - indexB;
     }else if (filterValue === 'option1') {
       const likesA = parseInt(a.querySelector('.likes').textContent);
       const likesB = parseInt(b.querySelector('.likes').textContent);
@@ -76,6 +78,8 @@ function filterMedia() {
     gallery.appendChild(item);
   });
 }
+
+
 
 
 

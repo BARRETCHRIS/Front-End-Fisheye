@@ -125,6 +125,26 @@ form input {
    
 }
 
+.filter-choise{
+    width: 110px;
+    background: #901c1c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.underline::after {
+    content: "";
+    display: block;
+    border-bottom: 2px solid white; 
+    margin-top: 2px;
+    padding: 0;
+    height: 2px;
+}
+
+
+
 .gallery {
     display: flex;
     flex-wrap: wrap;
@@ -177,4 +197,17 @@ form input {
 .media-date {
   position: absolute;
   left: -9999px;
+}
+
+.infos-bottom{
+    width: 250px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-around;
+    background: #d3573c; 
+    border-radius: 5px;
+    position: fixed;
+    bottom: 0;
+    right: 10px;
+    z-index: 1000;
 }
