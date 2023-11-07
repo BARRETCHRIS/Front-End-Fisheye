@@ -1,3 +1,28 @@
+async function getPhotographers() {
+    const answer = await fetch("data/photographers.json"); 
+    const photographers= await answer.json();
+    // et bien retourner le tableau photographers seulement une fois récupéré
+    return photographers;    
+}
+
+function displayData(photographers) {
+    const photographersSection = document.querySelector(".photographer_section");
+
+    photographers.forEach((photographer) => {
+        const photographerModel = photographerTemplate(photographer);
+        const userCardDOM = photographerModel.getUserCardDOM();
+        photographersSection.appendChild(userCardDOM);
+    });
+}
+
+async function init() {
+    // Récupère les datas des photographes
+    const { photographers } = await getPhotographers();
+    displayData(photographers);
+}
+
+init();
+
 const urlParams = new URLSearchParams(window.location.search);
 const photographerId = urlParams.get('id');
 
@@ -78,10 +103,3 @@ function filterMedia() {
     gallery.appendChild(item);
   });
 }
-
-
-
-
-
-
-

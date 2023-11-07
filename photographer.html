@@ -31,7 +31,7 @@
         <div class="filters">
           <label for="filterChoise">Trier par </label>
           <select id="filterChoise" name="filterChoise" class="filter-choise" onchange="filterMedia()">
-            <option value="none" class="underline">Pas de filtre</option>
+            <option value="none" class="underline"> Pas de filtre</option>
             <option value="option1">Popularité</option>
             <option value="option2">Date</option>
             <option value="option3">Titre</option>
@@ -75,6 +75,17 @@
         
 			</div>
 		</div>
+    <div id="lightbox" class="lightbox">
+      <div class="lightbox-content">
+        <span class="close-lightbox" onclick="closeLightbox()">&times;</span>
+        <div class="lightbox-media"></div>
+        <div class="lightbox-navigation">
+          <span class="prev-media" onclick="showPrevMedia()">&#10094;</span>
+          <span class="next-media" onclick="showNextMedia()">&#10095;</span>
+        </div>
+      </div>
+    </div>
+
     <script src="/scripts/templates/portfolio.js"></script>
     <script src="/scripts/pages/photographer.js"></script>
     <script src="/scripts/utils/contactForm.js"></script>
