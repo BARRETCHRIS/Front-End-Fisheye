@@ -68,6 +68,8 @@ async function init() {
 
 init();
 
+
+
 function filterMedia() {
   const filterValue = document.getElementById('filterChoise').value;
   const gallery = document.querySelector('.gallery');
@@ -99,7 +101,17 @@ function filterMedia() {
   sortedMediaItems.forEach(item => {
     gallery.appendChild(item);
   });
+
+  // localStorage.setItem('selectedFilter', filterValue);
+
 }
+
+// function loadSelectedFilter() {
+//   const selectedFilter = localStorage.getItem('selectedFilter');
+//   if (selectedFilter) {
+//     document.getElementById('filterChoise').value = selectedFilter;
+//   }
+// }
 
 function openMediaInLightbox(mediaCard) {
   const lightboxMedia = document.getElementById('lightboxMedia');
@@ -133,7 +145,9 @@ function showNextMedia() {
   const currentIndex = parseInt(currentMedia.getAttribute('data-index'));
   const totalMedia = document.querySelectorAll('.media-card').length;
 
-  if (currentIndex < totalMedia - 1) {
+  console.log(totalMedia);
+
+  if (currentIndex < totalMedia - 2) {
       const nextMediaCard = document.querySelector(`.media-card-${currentIndex + 1}`);
       openMediaInLightbox(nextMediaCard);
   }
