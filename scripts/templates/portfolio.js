@@ -64,11 +64,11 @@ function photographerGalleryTemplate(data){
 
       if (mediaItem.image) {
         const mediaImage = document.createElement('img');
-        mediaImage.setAttribute('src', `../assets/images/${name}/${mediaItem.image}`);
+        mediaImage.setAttribute('src', `assets/images/${name}/${mediaItem.image}`);
         mediaWrap.appendChild(mediaImage);
       } else if (mediaItem.video) {
         const mediaVideo = document.createElement('video');
-        mediaVideo.setAttribute('src', `../assets/images/${name}/${mediaItem.video}`);
+        mediaVideo.setAttribute('src', `assets/images/${name}/${mediaItem.video}`);
         mediaVideo.setAttribute('controls', true);
         mediaWrap.appendChild(mediaVideo);
       }
