@@ -43,9 +43,7 @@
         </div> 
       </div>
     </main>
-    <div id="lightbox">
-      
-    </div>
+    
     <div id="contact_modal">
 			<div class="modal">
 				<div>
@@ -71,14 +69,14 @@
             <textarea name="message" id="message"  cols="70" rows="10"></textarea>
 					</div>
           <button class="contact_button">Envoyer</button>
-				</form>
-        
+				</form>  
 			</div>
 		</div>
+    
     <div id="lightbox" class="lightbox">
       <div class="lightbox-content">
         <span class="close-lightbox" onclick="closeLightbox()">&times;</span>
-        <div class="lightbox-media"></div>
+        <div class="lightbox-media" id="lightboxMedia"></div>
         <div class="lightbox-navigation">
           <span class="prev-media" onclick="showPrevMedia()">&#10094;</span>
           <span class="next-media" onclick="showNextMedia()">&#10095;</span>

@@ -38,6 +38,7 @@ function photographerGalleryTemplate(data){
     function getGalleryCardDOM(mediaItem, index) {
       const mediaWrap = document.createElement('div');
       mediaWrap.classList.add('media-card');
+      mediaWrap.classList.add(`media-card-${index}`);
       mediaWrap.setAttribute('data-index', index);
 
       const mediaInfoWrap = document.createElement('div');
@@ -56,9 +57,7 @@ function photographerGalleryTemplate(data){
       heartIcon.classList.add('fa-solid', 'fa-heart');
       mediaLikes.appendChild(likesText);
       mediaLikes.appendChild(heartIcon);
-
-      // mediaLikes.addEventListener('click', () => incrementLikes(mediaItem.id));
-
+      
       const mediaDate = document.createElement('p');
       mediaDate.classList.add('media-date');
       mediaDate.textContent = mediaItem.date;

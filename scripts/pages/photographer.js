@@ -1,7 +1,7 @@
 async function getPhotographers() {
     const answer = await fetch("data/photographers.json"); 
     const photographers= await answer.json();
-    // et bien retourner le tableau photographers seulement une fois récupéré
+    // retourner le tableau photographers seulement une fois récupéré
     return photographers;    
 }
 
@@ -14,14 +14,6 @@ function displayData(photographers) {
         photographersSection.appendChild(userCardDOM);
     });
 }
-
-async function init() {
-    // Récupère les datas des photographes
-    const { photographers } = await getPhotographers();
-    displayData(photographers);
-}
-
-init();
 
 const urlParams = new URLSearchParams(window.location.search);
 const photographerId = urlParams.get('id');
@@ -68,6 +60,10 @@ async function init() {
     });
   });
 
+  mediaItems.forEach(mediaItem => {
+    mediaItem.addEventListener('click', () => openMediaInLightbox(mediaItem));
+  });
+
 }
 
 init();
@@ -79,6 +75,7 @@ function filterMedia() {
 
   const sortedMediaItems = Array.from(mediaItems)
   sortedMediaItems.sort((a, b) => {
+    
     if (filterValue === 'none'){
       const indexA = parseInt(a.getAttribute('data-index'));
       const indexB = parseInt(b.getAttribute('data-index'));
@@ -102,4 +99,50 @@ function filterMedia() {
   sortedMediaItems.forEach(item => {
     gallery.appendChild(item);
   });
+}
+
+function openMediaInLightbox(mediaCard) {
+  const lightboxMedia = document.getElementById('lightboxMedia');
+  lightboxMedia.innerHTML = ''; 
+
+  const mediaClone = mediaCard.cloneNode(true);
+  mediaClone.classList.add('expanded-media-card');
+  lightboxMedia.appendChild(mediaClone);
+
+  const lightbox = document.getElementById('lightbox');
+  lightbox.style.display = 'block'; 
+
+  const closeLightboxButton = document.querySelector('.close-lightbox');
+  closeLightboxButton.addEventListener('click', closeLightbox);
+}
+
+function showPrevMedia() {
+  const lightboxMedia = document.getElementById('lightboxMedia');
+  const currentMedia = lightboxMedia.querySelector('.expanded-media-card');
+  const currentIndex = parseInt(currentMedia.getAttribute('data-index'));
+
+  if (currentIndex > 0) {
+      const prevMediaCard = document.querySelector(`.media-card-${currentIndex - 1}`);
+      openMediaInLightbox(prevMediaCard);
+  }
+}
+
+function showNextMedia() {
+  const lightboxMedia = document.getElementById('lightboxMedia');
+  const currentMedia = lightboxMedia.querySelector('.expanded-media-card');
+  const currentIndex = parseInt(currentMedia.getAttribute('data-index'));
+  const totalMedia = document.querySelectorAll('.media-card').length;
+
+  if (currentIndex < totalMedia - 1) {
+      const nextMediaCard = document.querySelector(`.media-card-${currentIndex + 1}`);
+      openMediaInLightbox(nextMediaCard);
+  }
+}
+
+function closeLightbox() {
+    const lightbox = document.getElementById('lightbox');
+    lightbox.style.display = 'none'; 
+
+    const lightboxMedia = document.getElementById('lightboxMedia');
+    lightboxMedia.innerHTML = ''; 
 }
