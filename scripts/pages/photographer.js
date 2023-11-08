@@ -1,20 +1,3 @@
-async function getPhotographers() {
-    const answer = await fetch("data/photographers.json"); 
-    const photographers= await answer.json();
-    // retourner le tableau photographers seulement une fois récupéré
-    return photographers;    
-}
-
-function displayData(photographers) {
-    const photographersSection = document.querySelector(".photographer_section");
-
-    photographers.forEach((photographer) => {
-        const photographerModel = photographerTemplate(photographer);
-        const userCardDOM = photographerModel.getUserCardDOM();
-        photographersSection.appendChild(userCardDOM);
-    });
-}
-
 const urlParams = new URLSearchParams(window.location.search);
 const photographerId = urlParams.get('id');
 
@@ -25,7 +8,7 @@ async function getPhotographerData(photgapherId) {
     const photographers = data.photographers.find(p => p.id === parseInt(photographerId));
     const media = data.media.filter(m => m.photographerId === parseInt(photographerId));
     
-    return { photographers, media};    
+    return {photographers, media};    
 }
 
 async function init() {
@@ -63,12 +46,9 @@ async function init() {
   mediaItems.forEach(mediaItem => {
     mediaItem.addEventListener('click', () => openMediaInLightbox(mediaItem));
   });
-
 }
 
 init();
-
-
 
 function filterMedia() {
   const filterValue = document.getElementById('filterChoise').value;
@@ -77,7 +57,6 @@ function filterMedia() {
 
   const sortedMediaItems = Array.from(mediaItems)
   sortedMediaItems.sort((a, b) => {
-    
     if (filterValue === 'none'){
       const indexA = parseInt(a.getAttribute('data-index'));
       const indexB = parseInt(b.getAttribute('data-index'));
@@ -144,8 +123,6 @@ function showNextMedia() {
   const currentMedia = lightboxMedia.querySelector('.expanded-media-card');
   const currentIndex = parseInt(currentMedia.getAttribute('data-index'));
   const totalMedia = document.querySelectorAll('.media-card').length;
-
-  console.log(totalMedia);
 
   if (currentIndex < totalMedia - 2) {
       const nextMediaCard = document.querySelector(`.media-card-${currentIndex + 1}`);
