@@ -3,7 +3,6 @@ function photographerGalleryTemplate(data){
     const picture = `assets/photographers/${portrait}`;
 
     function getPhotographCardDOM(){
-
         const cardContainer = document.createElement('div');
         cardContainer.classList.add('card-container');
 
@@ -103,3 +102,4 @@ function photographerGalleryTemplate(data){
   return { name, city, tagline, portrait, price, getPhotographCardDOM, getGalleryCardDOM, getTotalLikesDOM }
 
 }
+

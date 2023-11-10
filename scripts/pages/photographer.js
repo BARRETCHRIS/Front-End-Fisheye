@@ -1,3 +1,8 @@
+let originMediaArray = [];
+let filteredMediaArray = [];
+let photographTemplate ='';
+console.log(typeof photographTemplate)
+
 const urlParams = new URLSearchParams(window.location.search);
 const photographerId = urlParams.get('id');
 
@@ -5,30 +10,40 @@ async function getPhotographerData(photgapherId) {
     const answer = await fetch("data/photographers.json"); 
     const data= await answer.json();
 
-    const photographers = data.photographers.find(p => p.id === parseInt(photographerId));
-    const media = data.media.filter(m => m.photographerId === parseInt(photographerId));
+    const photographer = data.photographers.find(p => p.id === parseInt(photographerId));
+    const medias = data.media.filter(m => m.photographerId === parseInt(photographerId));
     
-    return {photographers, media};    
+    return {photographer, medias};    
 }
 
 async function init() {
 
-    const { photographers, media } = await getPhotographerData(photographerId);
+  const { photographer, medias } = await getPhotographerData(photographerId);
+  originMediaArray = Array.from(medias);
+  filteredMediaArray = [...originMediaArray];
+//suppréssion du const devant la varible qui suit pour régler le problème de retour de photographTemplate dans updateGallery
+  photographTemplate = photographerGalleryTemplate(photographer);
 
-    const photographTemplate = photographerGalleryTemplate(photographers);
-    const cardDOM = photographTemplate.getPhotographCardDOM();
+  const cardDOM = photographTemplate.getPhotographCardDOM();
 
-    const photographHeader = document.querySelector(".photograph-header");
-    photographHeader.appendChild(cardDOM);
+  const photographHeader = document.querySelector(".photograph-header");
+  photographHeader.appendChild(cardDOM);
+  
+  const gallery = document.querySelector('.gallery');
+  gallery.addEventListener('click', (event) => {
+    const targetMediaCard = event.target.closest('.media-card');
+    if (targetMediaCard) {
+      const index = parseInt(targetMediaCard.getAttribute('data-index'));
+      openMediaInLightbox(index);
+    }
+  });
 
-    const gallery = document.querySelector('.gallery');
-
-    media.forEach((mediaItem, index) => {
+  medias.forEach((mediaItem, index) => {
     const mediaCard = photographTemplate.getGalleryCardDOM(mediaItem, index);
     gallery.appendChild(mediaCard);
   }); 
 
-  const totalLikesDOM = photographTemplate.getTotalLikesDOM(media);
+  const totalLikesDOM = photographTemplate.getTotalLikesDOM(medias);
   gallery.appendChild(totalLikesDOM);
 
   const mediaItems = gallery.querySelectorAll('.media-card');
@@ -45,67 +60,86 @@ async function init() {
 
   mediaItems.forEach(mediaItem => {
     mediaItem.addEventListener('click', () => openMediaInLightbox(mediaItem));
-  });
+  }); 
+
+  return medias;
 }
 
 init();
 
-function filterMedia() {
-  const filterValue = document.getElementById('filterChoise').value;
-  const gallery = document.querySelector('.gallery');
-  const mediaItems = gallery.querySelectorAll('.media-card');
+function filterMedias() {
+  let filterValue = document.getElementById('filterChoise').value;
 
-  const sortedMediaItems = Array.from(mediaItems)
-  sortedMediaItems.sort((a, b) => {
-    if (filterValue === 'none'){
-      const indexA = parseInt(a.getAttribute('data-index'));
-      const indexB = parseInt(b.getAttribute('data-index'));
-      return indexA - indexB;
-    }else if (filterValue === 'option1') {
-      const likesA = parseInt(a.querySelector('.likes').textContent);
-      const likesB = parseInt(b.querySelector('.likes').textContent);
-      return likesB - likesA;
+  filteredMediaArray.sort((a, b) => {
+     if (filterValue === 'option1') {
+      //popularité
+      return b.likes - a.likes;
     } else if (filterValue === 'option2') {
-      const dateA = new Date(a.querySelector('.media-date').textContent);
-      const dateB = new Date(b.querySelector('.media-date').textContent);
+      //date
+      const dateA = new Date(a.date);
+      const dateB = new Date(b.date);
       return dateB - dateA;
     } else if (filterValue === 'option3') {
-      const titleA = a.querySelector('.media-title').textContent;
-      const titleB = b.querySelector('.media-title').textContent;
-      return titleA.localeCompare(titleB);
+      //titre
+      return a.title.localeCompare(b.title);
     }
+    
   });
+  if (filterValue === 'none'){
+      filteredMediaArray = Array.from(originMediaArray);
+    }
+console.log(filterValue);
+ return {filteredMediaArray, filterValue};
+} 
 
-  gallery.innerHTML = '';
-  sortedMediaItems.forEach(item => {
-    gallery.appendChild(item);
+let filterValue = document.getElementById('filterChoise').value;
+console.log('hors fonction ' + filterValue);
+async function updateGallery() {
+
+  const gallery = document.querySelector('.gallery');
+  gallery.innerHTML = ''; 
+
+  filteredMediaArray.forEach((mediaItem, index) => {
+    mediaCard = photographTemplate.getGalleryCardDOM(mediaItem, index);
+    gallery.appendChild(mediaCard);
+
+    const likesElement = mediaCard.querySelector('.likes');
+    const likesNbr = mediaCard.querySelector('.likes-nbr');
+
+    likesElement.addEventListener('click', () => {
+      let likesCount = parseInt(likesNbr.textContent);
+      likesCount++;
+      likesNbr.textContent = likesCount;
+    });
+
+    mediaCard.addEventListener('click', () => openMediaInLightbox(mediaCard));
   });
-
-  // localStorage.setItem('selectedFilter', filterValue);
-
 }
 
-// function loadSelectedFilter() {
-//   const selectedFilter = localStorage.getItem('selectedFilter');
-//   if (selectedFilter) {
-//     document.getElementById('filterChoise').value = selectedFilter;
-//   }
-// }
+document.getElementById('filterChoise').addEventListener('change', () => {
+  filterMedias();
+  updateGallery();
 
-function openMediaInLightbox(mediaCard) {
+});  
+
+function openMediaInLightbox(index) {
   const lightboxMedia = document.getElementById('lightboxMedia');
-  lightboxMedia.innerHTML = ''; 
+  lightboxMedia.innerHTML = '';
+
+  const mediaItem = filteredMediaArray[index];
+  const mediaCard = photographTemplate.getGalleryCardDOM(mediaItem, index);
 
   const mediaClone = mediaCard.cloneNode(true);
   mediaClone.classList.add('expanded-media-card');
   lightboxMedia.appendChild(mediaClone);
 
   const lightbox = document.getElementById('lightbox');
-  lightbox.style.display = 'block'; 
+  lightbox.style.display = 'block';
 
   const closeLightboxButton = document.querySelector('.close-lightbox');
   closeLightboxButton.addEventListener('click', closeLightbox);
 }
+
 
 function showPrevMedia() {
   const lightboxMedia = document.getElementById('lightboxMedia');
@@ -113,8 +147,8 @@ function showPrevMedia() {
   const currentIndex = parseInt(currentMedia.getAttribute('data-index'));
 
   if (currentIndex > 0) {
-      const prevMediaCard = document.querySelector(`.media-card-${currentIndex - 1}`);
-      openMediaInLightbox(prevMediaCard);
+    const prevMediaCard = document.querySelector(`.media-card-${currentIndex - 1}`);
+    openMediaInLightbox(currentIndex - 1);
   }
 }
 
@@ -122,11 +156,11 @@ function showNextMedia() {
   const lightboxMedia = document.getElementById('lightboxMedia');
   const currentMedia = lightboxMedia.querySelector('.expanded-media-card');
   const currentIndex = parseInt(currentMedia.getAttribute('data-index'));
-  const totalMedia = document.querySelectorAll('.media-card').length;
+  const totalMedia = filteredMediaArray.length;
 
-  if (currentIndex < totalMedia - 2) {
-      const nextMediaCard = document.querySelector(`.media-card-${currentIndex + 1}`);
-      openMediaInLightbox(nextMediaCard);
+  if (currentIndex < totalMedia - 1) {
+    const nextMediaCard = document.querySelector(`.media-card-${currentIndex + 1}`);
+    openMediaInLightbox(currentIndex + 1);
   }
 }
 
