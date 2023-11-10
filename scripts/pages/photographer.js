@@ -38,6 +38,21 @@ async function init() {
     }
   });
 
+  // Récupère la valeur du filtre depuis localStorage
+  const selectedFilter = localStorage.getItem('selectedFilter') || 'none';
+  const filterChoise = document.getElementById('filterChoise');
+  
+  // Définir l'attribut selected pour le filtre
+  for (let i = 0; i < filterChoise.options.length; i++) {
+    if (filterChoise.options[i].value === selectedFilter) {
+      filterChoise.options[i].selected = true;
+      break;
+    }
+  }
+
+  // Applique le filtre initial
+  filterMedias();
+
   medias.forEach((mediaItem, index) => {
     const mediaCard = photographTemplate.getGalleryCardDOM(mediaItem, index);
     gallery.appendChild(mediaCard);
@@ -88,8 +103,8 @@ function filterMedias() {
   if (filterValue === 'none'){
       filteredMediaArray = Array.from(originMediaArray);
     }
-console.log(filterValue);
- return {filteredMediaArray, filterValue};
+
+  return {filteredMediaArray, filterValue};
 } 
 
 let filterValue = document.getElementById('filterChoise').value;
