@@ -1,6 +1,6 @@
 let originMediaArray = [];
 let filteredMediaArray = [];
-let photographTemplate ='';
+//let photographTemplate ='';
 console.log(typeof photographTemplate)
 
 const urlParams = new URLSearchParams(window.location.search);
@@ -82,30 +82,32 @@ async function init() {
 
 init();
 
+// 
 function filterMedias() {
   let filterValue = document.getElementById('filterChoise').value;
 
   filteredMediaArray.sort((a, b) => {
-     if (filterValue === 'option1') {
-      //popularité
-      return b.likes - a.likes;
-    } else if (filterValue === 'option2') {
-      //date
-      const dateA = new Date(a.date);
-      const dateB = new Date(b.date);
-      return dateB - dateA;
-    } else if (filterValue === 'option3') {
-      //titre
-      return a.title.localeCompare(b.title);
+    switch (filterValue) {
+      case 'option1':
+        // popularité
+        return b.likes - a.likes;
+      case 'option2':
+        // date
+        const dateA = new Date(a.date);
+        const dateB = new Date(b.date);
+        return dateB - dateA;
+      case 'option3':
+        // titre
+        return a.title.localeCompare(b.title);
+      default:
+        // aucun filtre
+        filteredMediaArray = Array.from(originMediaArray);
     }
-    
   });
-  if (filterValue === 'none'){
-      filteredMediaArray = Array.from(originMediaArray);
-    }
 
   return {filteredMediaArray, filterValue};
-} 
+}
+ 
 
 let filterValue = document.getElementById('filterChoise').value;
 console.log('hors fonction ' + filterValue);
