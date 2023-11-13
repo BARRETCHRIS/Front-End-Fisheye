@@ -6,8 +6,11 @@ function photographerTemplate(data) {
     function getUserCardDOM() {
         const article = document.createElement( 'article' );
         const linkPhotographer = document.createElement("a");
+        // Ajout de la classe pour les liens de photographe
+        linkPhotographer.classList.add('photographer-link'); 
         // Ajout de l'attribut aria-labelledby pour référencer l'ID de l'élément h2
         linkPhotographer.setAttribute("aria-labelledby", `photographer-name-${id}`);
+        linkPhotographer.setAttribute("target", "_blank");
         const img = document.createElement( 'img' );
         img.setAttribute("src", picture);
         img.setAttribute("alt", `portrait de ${name}`);
