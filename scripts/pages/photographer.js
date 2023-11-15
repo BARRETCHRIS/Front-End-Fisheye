@@ -1,7 +1,7 @@
 let originMediaArray = [];
 let filteredMediaArray = [];
 //let photographTemplate ='';
-console.log(typeof photographTemplate)
+// console.log(typeof photographTemplate)
 
 const urlParams = new URLSearchParams(window.location.search);
 const photographerId = urlParams.get('id');
@@ -105,14 +105,11 @@ function filterMedias() {
     }
   });
 
-  return {filteredMediaArray, filterValue};
+  // return {filteredMediaArray, filterValue};
+  updateGallery();
 }
- 
 
-let filterValue = document.getElementById('filterChoise').value;
-console.log('hors fonction ' + filterValue);
 async function updateGallery() {
-
   const gallery = document.querySelector('.gallery');
   gallery.innerHTML = ''; 
 
@@ -139,52 +136,70 @@ document.getElementById('filterChoise').addEventListener('change', () => {
 
 });  
 
-function openMediaInLightbox(index) {
-  const lightboxMedia = document.getElementById('lightboxMedia');
-  lightboxMedia.innerHTML = '';
 
-  const mediaItem = filteredMediaArray[index];
-  const mediaCard = photographTemplate.getGalleryCardDOM(mediaItem, index);
+// TEST de navigation au clavier pour le bouton select
 
-  const mediaClone = mediaCard.cloneNode(true);
-  mediaClone.classList.add('expanded-media-card');
-  lightboxMedia.appendChild(mediaClone);
+// async function updateGallery() {
+//     const gallery = document.querySelector('.gallery');
+//     gallery.innerHTML = '';
 
-  const lightbox = document.getElementById('lightbox');
-  lightbox.style.display = 'block';
+//     filteredMediaArray.forEach((mediaItem, index) => {
+//         mediaCard = photographTemplate.getGalleryCardDOM(mediaItem, index);
+//         gallery.appendChild(mediaCard);
 
-  const closeLightboxButton = document.querySelector('.close-lightbox');
-  closeLightboxButton.addEventListener('click', closeLightbox);
-}
+//         const likesElement = mediaCard.querySelector('.likes');
+//         const likesNbr = mediaCard.querySelector('.likes-nbr');
 
+//         likesElement.addEventListener('click', () => {
+//             let likesCount = parseInt(likesNbr.textContent);
+//             likesCount++;
+//             likesNbr.textContent = likesCount;
+//         });
 
-function showPrevMedia() {
-  const lightboxMedia = document.getElementById('lightboxMedia');
-  const currentMedia = lightboxMedia.querySelector('.expanded-media-card');
-  const currentIndex = parseInt(currentMedia.getAttribute('data-index'));
+//         mediaCard.addEventListener('click', () => openMediaInLightbox(mediaCard));
+//     });
+// }
 
-  if (currentIndex > 0) {
-    const prevMediaCard = document.querySelector(`.media-card-${currentIndex - 1}`);
-    openMediaInLightbox(currentIndex - 1);
-  }
-}
+// document.getElementById('filterChoise').addEventListener('keydown', function (event) {
+//     const key = event.key;
 
-function showNextMedia() {
-  const lightboxMedia = document.getElementById('lightboxMedia');
-  const currentMedia = lightboxMedia.querySelector('.expanded-media-card');
-  const currentIndex = parseInt(currentMedia.getAttribute('data-index'));
-  const totalMedia = filteredMediaArray.length;
+//     switch (key) {
+//         case 'Enter':
+//             // Ouvrir le select en utilisant la méthode focus()
+//             this.focus();
+//             break;
 
-  if (currentIndex < totalMedia - 1) {
-    const nextMediaCard = document.querySelector(`.media-card-${currentIndex + 1}`);
-    openMediaInLightbox(currentIndex + 1);
-  }
-}
+//         case 'ArrowUp':
+//         case 'ArrowDown':
+//             event.preventDefault();
+//             // Naviguer dans les options
+//             navigateSelectOptions(key);
+//             break;
 
-function closeLightbox() {
-    const lightbox = document.getElementById('lightbox');
-    lightbox.style.display = 'none'; 
+//         default:
+//             break;
+//     }
+// });
 
-    const lightboxMedia = document.getElementById('lightboxMedia');
-    lightboxMedia.innerHTML = ''; 
-}
+// document.querySelector('.contact_button').addEventListener('keydown', function (event) {
+//     const key = event.key;
+
+//     if (key === 'Enter') {
+//         displayModal();
+//     }
+// });
+
+// document.getElementById('filterChoise').addEventListener('change', () => {
+//     filterMedias();
+// });
+
+// function navigateSelectOptions(direction) {
+//     const select = document.getElementById('filterChoise');
+//     const selectedIndex = select.selectedIndex;
+
+//     if (direction === 'ArrowUp' && selectedIndex > 0) {
+//         select.selectedIndex = selectedIndex - 1;
+//     } else if (direction === 'ArrowDown' && selectedIndex < select.options.length - 1) {
+//         select.selectedIndex = selectedIndex + 1;
+//     }
+// }

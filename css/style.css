@@ -3,6 +3,7 @@
 a{
     text-decoration: none;
     color: inherit;
+    display: block;
 }
 
 body {
@@ -43,27 +44,35 @@ h1 {
     align-items: center;  
 }
 
-.photographer_section article a {
+.photographer-link {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 350px;
+    margin-bottom: 20px;
 }
 
-.photographer_section article a h2 {
+.photographer-link h2 {
     color: #D3573C;
-    font-size: 36px;
+    font-size: 40px;
     text-align: center;
+    margin: 0;
 }
 
-.photographer_section article a img {
+.photographer-link img {
     height: 200px;
     width: 200px;
+    aspect-ratio: 1 / 1;
     border-radius: 50%;
     object-fit: cover;
+    margin-bottom: 20px;
 }
 
 .photographer_section article p{
     text-align: center;
     margin: 5px;
+}
+
+.city_wrap{
+    font-size: 24px;
+    color: #901C1C;
 }

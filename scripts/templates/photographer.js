@@ -7,24 +7,17 @@ function photographerTemplate(data) {
         const article = document.createElement( 'article' );
         const linkPhotographer = document.createElement("a");
         // Ajout de la classe pour les liens de photographe
-        linkPhotographer.classList.add('photographer-link'); 
-        // Ajout de l'attribut aria-labelledby pour référencer l'ID de l'élément h2
-        linkPhotographer.setAttribute("aria-labelledby", `photographer-name-${id}`);
+        linkPhotographer.classList.add('photographer-link');
         linkPhotographer.setAttribute("target", "_blank");
         const img = document.createElement( 'img' );
         img.setAttribute("src", picture);
         img.setAttribute("alt", `portrait de ${name}`);
-        img.setAttribute("aria-label", `${name}, ${city} - ${tagline}, ${price} €/jour`);
+        img.setAttribute("aria-label", `${name}, cliquer ou taper entrer pour ouvrir la galerie du photographe`);
         const h2 = document.createElement( 'h2' );
-        h2.setAttribute("id", `photographer-name-${id}`);
         const cityWrap = document.createElement("p");
+        cityWrap.classList.add("city_wrap");        
         const taglineWrap = document.createElement("p");
-        const priceWrap = document.createElement("p"); 
-
-        // Ajout d'un texte descriptif pour informer les utilisateurs
-        const description = document.createElement("span");
-        description.setAttribute("id", `photographer-description-${id}`);
-        description.textContent = `Cliquez pour ouvrir la galerie de ${name}`;  
+        const priceWrap = document.createElement("p");  
 
         h2.textContent = name;
         cityWrap.textContent = city;

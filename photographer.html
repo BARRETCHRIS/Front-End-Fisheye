@@ -1,58 +1,52 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fisheye</title>
     <link rel="icon" type="image/png" href="assets/favicon.png">
-    
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
-    <title>Fisheye - photographe </title>
-
-    <script src="https://kit.fontawesome.com/ab2870ff1f.js" crossorigin="anonymous"></script>
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
   </head>
   <body>
     <header>
-      <a href="index.html">
-        <img src="assets/images/logo.png" class="logo" />
-      </a> 
+      <nav>
+        <a href="index.html">
+          <img src="assets/images/logo.png" class="logo" alt="Logo fisheye" aria-label="Cliquer pour revenir à la page d'acceuil"/>
+        </a> 
+      </nav>
     </header>
     <main id="main">
-      <div class="photograph-header">
-
-        <div class="surname">
-        </div>
-        
+      <section class="photograph-header">
+        <div class="surname"></div>
         <div class="btn-wrap">
-          <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+          <button class="contact_button" onclick="displayModal()" aria-label="Ouvrir la fenêtre de contact">Contactez-moi</button>
         </div>
-        <div class="portrait">
-
-        </div>  
-      </div>
-      <div class="portfolio_section">
+        <div class="portrait"></div>  
+      </section>
+      <section class="portfolio_section">
         <div class="filters">
           <label for="filterChoise">Trier par </label>
-          <select id="filterChoise" name="filterChoise" class="filter-choise" onchange="filterMedias()">
-          <!-- <select id="filterChoise" name="filterChoise" class="filter-choise"> -->
+          <select id="filterChoise" name="filterChoise" class="filter-choise" aria-label="Sélectionnez un critère de tri" onchange="filterMedias()">
             <option value="none" class="underline"> Pas de filtre</option>
             <option value="option1">Popularité</option>
             <option value="option2">Date</option>
             <option value="option3">Titre</option>
-            <!-- Ajoutez autant d'options que nécessaire -->
           </select>
         </div>
-        <div class="gallery"> 
-
-        </div> 
-      </div>
+        <div class="gallery" role="list"></div> 
+      </section>
     </main>
-    
-    <div id="contact_modal">
+
+    <!-- Modal de contact -->
+    <div id="contact_modal" class="contact_modal">
 			<div class="modal">
-				<div>
-          <h2>Contactez-moi</h2>
-          <p class="photographer">Photographer name     </p>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
+				<div class="form_header">
+          <div class="form_header_name">
+            <h2>Contactez-moi</h2>
+            <p id="contact_name"></p>
+          </div>
+          <img src="assets/icons/close.svg" onclick="closeModal()" alt="Fermer" aria-label="Cliquer pour fermer le formulaire"/>
         </div>
 				<form>
 					<div>
@@ -76,19 +70,22 @@
 			</div>
 		</div>
 
+    <!-- Lightbox -->
     <div id="lightbox" class="lightbox">
       <div class="lightbox-content">
-        <span class="close-lightbox" onclick="closeLightbox()">&times;</span>
-        <div class="lightbox-media" id="lightboxMedia"></div>
+        <span class="close-lightbox" onclick="closeLightbox()" alt="Fermer" aria-label="Cliquer pour fermer la lightbox">&times;</span>
         <div class="lightbox-navigation">
           <span class="prev-media" onclick="showPrevMedia()">&#10094;</span>
+          <div class="lightbox-media" id="lightboxMedia"></div>
           <span class="next-media" onclick="showNextMedia()">&#10095;</span>
         </div>
       </div>
     </div>
 
+    <!-- Scripts -->
     <script src="scripts/templates/portfolio.js"></script>
     <script src="scripts/pages/photographer.js"></script>
     <script src="scripts/utils/contactForm.js"></script>
+    <script src="scripts/utils/lightbox.js"></script>    
   </body>
 </html>
