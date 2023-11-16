@@ -3,13 +3,18 @@
   "version": "1.0.0",
   "description": "Projet Fisheye d'OC",
   "main": "index.js",
-  "scripts": {
+    "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint":"eslint"
+    "dev": "http-server",
+    "lint": "eslint **/*.js"
   },
+  "eslintIgnore": [
+  "node_modules/"
+  ],
   "author": "Christelle Barret",
   "license": "ISC",
   "devDependencies": {
     "eslint": "^8.53.0"
   }
 }
+

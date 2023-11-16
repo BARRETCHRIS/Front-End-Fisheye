@@ -1,22 +1,29 @@
 <!DOCTYPE html>
 <html lang="fr">
   <head>
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Fisheye</title>
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
-    <title>Fisheye</title>
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <!--Fontawesome kit-->
+    <script src="https://kit.fontawesome.com/ab2870ff1f.js" crossorigin="anonymous"></script>
   </head>
   <body>
     <header>
-        <img src="assets/images/logo.png" class="logo" alt="fisheye logo"/>
-        <h1>Nos photographes</h1>
+        <img src="assets/images/logo.png" class="logo" alt="Logo fisheye" aria-label="Bienvenue sur la galerie présentant nos photographes"/>
+        <h1 aria-label="Nos photographes">Nos photographes</h1>
     </header>
     <main id="main">
-        <div class="photographer_section"></div>
+        <section class="photographers_section"></section>
     </main>
-    script functional pattern
-    <script src="scripts/templates/photographer.js"></script>
-    <script src="scripts/pages/index.js"></script>
+    <!-- script functional pattern -->
+    <!-- <script src="scripts/templates/photographer.js"></script>
+    <script src="scripts/pages/index.js"></script> -->
+    <script src="js/templates/photgrapherCard.js"></script>
+    <script src="js/api/api.js"></script>
+    <script src="js/app.js"></script>
   </body>
 </html>
