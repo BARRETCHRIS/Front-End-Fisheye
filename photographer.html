@@ -1,18 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Fisheye</title>
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <!--Fontawesome kit-->
+    <script src="https://kit.fontawesome.com/ab2870ff1f.js" crossorigin="anonymous"></script>
   </head>
   <body>
     <header>
       <nav>
-        <a href="index.html">
-          <img src="assets/images/logo.png" class="logo" alt="Logo fisheye" aria-label="Cliquer pour revenir à la page d'acceuil"/>
+        <a href="index.html" aria-current="page" aria-label="Fisheye Home page">
+          <img src="assets/images/logo.png" class="logo" alt="Logo fisheye" />
         </a> 
       </nav>
     </header>
@@ -20,17 +23,17 @@
       <section class="photograph-header">
         <div class="surname"></div>
         <div class="btn-wrap">
-          <button class="contact_button" onclick="displayModal()" aria-label="Ouvrir la fenêtre de contact">Contactez-moi</button>
+          <button class="contact_button" onclick="displayModal()" aria-label="Taper entrée pour ouvrir le formulaire de contact">Contactez-moi</button>
         </div>
         <div class="portrait"></div>  
       </section>
       <section class="portfolio_section">
         <div class="filters">
-          <label for="filterChoise">Trier par </label>
-          <select id="filterChoise" name="filterChoise" class="filter-choise" aria-label="Sélectionnez un critère de tri" onchange="filterMedias()">
+        <label for="filterChoise" aria-label="Utilisez les touches fléchées pour changer de filtre">Trier par </label>
+          <select id="filterChoise" name="filterChoise" class="filter-choise"  onchange="filterMedias()">
             <option value="none" class="underline"> Pas de filtre</option>
             <option value="option1">Popularité</option>
-            <option value="option2">Date</option>
+            <option value="option2" >Date</option>
             <option value="option3">Titre</option>
           </select>
         </div>

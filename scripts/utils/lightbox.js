@@ -22,7 +22,6 @@ function openMediaInLightbox(index) {
   }
 }
 
-
 function showPrevMedia() {
   const lightboxMedia = document.getElementById('lightboxMedia');
   const currentMedia = lightboxMedia.querySelector('.expanded-media-card');

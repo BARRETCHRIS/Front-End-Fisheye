@@ -14,6 +14,7 @@ function photographerTemplate(data) {
         img.setAttribute("alt", `portrait de ${name}`);
         img.setAttribute("aria-label", `${name}, cliquer ou taper entrer pour ouvrir la galerie du photographe`);
         const h2 = document.createElement( 'h2' );
+        h2.setAttribute("aria-label", `${name}`)
         const cityWrap = document.createElement("p");
         cityWrap.classList.add("city_wrap");        
         const taglineWrap = document.createElement("p");
