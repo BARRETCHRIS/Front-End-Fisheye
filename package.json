@@ -94,8 +94,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "http-server",
-    "lint": "eslint"
+    "lint": "eslint **/*.js"
   },
+  "eslintIgnore": [
+  "node_modules/"
+  ],
   "author": "Christelle Barret",
   "license": "ISC",
   "devDependencies": {
