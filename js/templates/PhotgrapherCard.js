@@ -5,7 +5,8 @@ class PhotographerCard {
 
     createPhotographerCard() {
         const $wrapper = document.createElement('article')
-        $wrapper.classList.add('photographer-card-wrap')
+        $wrapper.classList.add('photographer_card_wrap')
+        $wrapper.setAttribute('aria-label', 'Carte de présentation de ${this._photographer.name}')
 
         const photographerCard = `
             <a class="photographer_link" target="blank" href="photographer.html?id=${this._photographer.id}">
@@ -14,9 +15,11 @@ class PhotographerCard {
                 </div>
                 <h2 class="photographer_name" aria-label="${this._photographer.name}">${this._photographer.name}</h2>
             </a>
-            <p class="city_wrap">${this._photographer.city}, ${this._photographer.country}</p>
-            <p class="tagline">${this._photographer.tagline}</p>
-            <p class="price">${this._photographer.price} €/jour</p>
+            <div class="photographer_infos">
+                <p class="city_wrap">${this._photographer.city}, ${this._photographer.country}</p>
+                <p class="tagline">${this._photographer.tagline}</p>
+                <p class="price">${this._photographer.price} €/jour</p>
+            </div>
         `
         
         $wrapper.innerHTML = photographerCard

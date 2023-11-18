@@ -13,15 +13,16 @@
   </head>
   <body>
     <header>
-        <img src="assets/images/logo.png" class="logo" alt="Logo fisheye" aria-label="Bienvenue sur la galerie présentant nos photographes"/>
-        <h1 aria-label="Nos photographes">Nos photographes</h1>
+      <a href="#" id="logo_link_home">
+        <img src="assets/images/logo.png" class="logo" alt="Fisheye Home page" lang="en"/>
+      </a>
+        
+      <h1 tabindex="0" aria-label="Nos photographes">Nos photographes</h1>
     </header>
     <main id="main">
-        <section class="photographers_section"></section>
+      <section class="photographers_section" aria-label="Bienvenue sur la galerie présentant nos photographes"></section>
     </main>
-    <!-- script functional pattern -->
-    <!-- <script src="scripts/templates/photographer.js"></script>
-    <script src="scripts/pages/index.js"></script> -->
+    
     <script src="js/templates/photgrapherCard.js"></script>
     <script src="js/api/api.js"></script>
     <script src="js/app.js"></script>
