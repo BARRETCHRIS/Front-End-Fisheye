@@ -7,18 +7,19 @@ class MediaCardGallery {
     createMediaCardGallery() {
         const $articleWrap = document.createElement('div');
         $articleWrap.classList.add('media_card');
+        $articleWrap.setAttribute('tabindex', '0');
 
         let mediaContent;
 
         if (this._media.image) {
             // Si c'est une image
             mediaContent = `
-                <img class="mediaImg" src="assets/images/${this._photographer.name}/${this._media.image}" alt="${this._media.title}" aria-label="Cliquer pour ouvrir le carrousel des œuvres">
+                <img class="mediaImg" src="assets/images/${this._photographer.name}/${this._media.image}" alt="${this._media.title}" aria-label="Cliquer pour ouvrir le carrousel des œuvres" tabindex="0">
             `;
         } else if (this._media.video) {
             // Si c'est une vidéo
             mediaContent = `
-                <video class="mediaImg" aria-label="Cliquer pour ouvrir le carrousel des œuvres et lire la vidéo">
+                <video class="mediaImg" aria-label="Cliquer pour ouvrir le carrousel des œuvres et lire la vidéo" tabindex="0">
                     <source src="assets/images/${this._photographer.name}/${this._media.video}" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
@@ -27,13 +28,13 @@ class MediaCardGallery {
 
         const mediaCard = `
             ${mediaContent}
-            <div class="media_info">
-                <h2 class="media_title">${this._media.title}</h2>
+    <div class="media_info">
+                <h2 class="media_title" tabindex="0">${this._media.title}</h2>
                 <p class="likes">
-                    <span class="likes_nbr" aria-label="${this._media.likes} likes reçus">${this._media.likes}</span>
+                    <span class="likes_nbr" aria-label="${this._media.likes} likes reçus" tabindex="0">${this._media.likes}</span>
                     <i class="fa-solid fa-heart"></i>
                 </p>
-                <p class="media_date" aria-label="Créé le ${this._media.date}">${this._media.date}</p>
+                <p class="media_date" aria-label="Créé le ${this._media.date}" tabindex="0">${this._media.date}</p>
             </div>
         `;
 

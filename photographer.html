@@ -35,8 +35,36 @@
       </section>
     </main>
 
-    <!-- Modal de contact -->
     <div id="contact_modal" class="contact_modal">
+      <div class="modal">
+        <div class="form_header" aria-label="Entête du formulaire de contact" tabindex="1">
+          <div class="form_header_name">
+            <h2 aria-label="Contactez">Contactez-moi</h2>
+            <p aria-label="nom du photographe" id="contact_name"></p>
+          </div>
+          <img src="assets/icons/close.svg" onclick="closeModal()" alt="Fermer" aria-label="Cliquer pour fermer le formulaire" tabindex="2"/>
+        </div>
+        <form>
+          <label for="firstName">Prénom :</label>
+          <input type="text" id="firstName" name="firstName" autocomplete="given-name" required tabindex="3" aria-label="Entrez votre prénom">
+
+          <label for="lastName">Nom :</label>
+          <input type="text" id="lastName" name="lastName" autocomplete="family-name" required tabindex="4" aria-label="Entrez votre nom de famille">
+
+          <label for="email">Email :</label>
+          <input type="email" id="email" name="email" autocomplete="email" required tabindex="5" aria-label="Entrez votre adresse e-mail">
+
+          <label for="message">Votre message :</label>
+          <textarea id="message" name="message" rows="10" required tabindex="6" aria-label="Entrez votre message"></textarea>
+
+          <button type="submit" class="contact_button" aria-label="Cliquer pour envoyer le formulaire" tabindex="7">Envoyer</button>
+        </form>
+      </div>
+    </div>
+
+
+    <!-- Modal de contact -->
+    <!-- <div id="contact_modal" class="contact_modal">
 			<div class="modal">
 				<div class="form_header">
           <div class="form_header_name">
@@ -65,8 +93,7 @@
           <button class="contact_button">Envoyer</button>
 				</form>  
 			</div>
-		</div>
-
+		</div> -->
     <!-- Lightbox -->
     <div id="lightbox" class="lightbox">
       <div class="lightbox-content">
@@ -78,9 +105,14 @@
         </div>
       </div>
     </div>
+    
     <script src="js/templates/mediaCardGallery.js"></script>
     <script src="js/templates/photographCardGallery.js"></script>
     <script src="js/api/api.js"></script>
     <script src="js/appGallery.js"></script>
+
+    <script src="js/utils/form.js"></script>
+    <!-- <script src="js/utils/lightbox.js"></script>
+    <script src="js/utils/order.js"></script> -->
   </body>
 </html>
