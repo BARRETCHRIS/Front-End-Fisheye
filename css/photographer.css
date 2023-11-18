@@ -24,7 +24,6 @@
 .photograph-header .surname{
     text-align: left;
     width: 40%;
-    order: 1;
 }
 
 .photograph-header .surname .photographer_name{
@@ -39,13 +38,11 @@
 
 .photograph-header .btn-wrap{
     text-align: center;
-    order: 2;
 }
 
 .photograph-header .portrait {
     align-items: flex-end;
     width: 40%;
-    order: 3;
 }
 
 .portrait img{

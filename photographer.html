@@ -14,13 +14,13 @@
   <body>
     <header>
       <nav>
-        <a href="index.html" aria-current="page" aria-label="Fisheye Home page">
+        <a href="index.html" id="logo_gallery_page" aria-label="Fisheye Retour à la home page" tabindex="0">
           <img src="assets/images/logo.png" class="logo" alt="Logo fisheye" />
         </a> 
       </nav>
     </header>
     <main id="main">
-      <section class="photograph-header"></section>
+      <section class="photograph-header" tabindex="0"></section>
       <section class="portfolio_section">
         <!-- <div class="filters">
           <label for="filterChoise" aria-label="Utilisez les touches fléchées pour changer de filtre">Trier par </label>
@@ -78,8 +78,8 @@
         </div>
       </div>
     </div>
+    <script src="js/templates/mediaCardGallery.js"></script>
     <script src="js/templates/photographCardGallery.js"></script>
-    <!-- <script src="js/templates/mediaCardGallery.js"></script> -->
     <script src="js/api/api.js"></script>
     <script src="js/appGallery.js"></script>
   </body>

@@ -73,7 +73,7 @@ class PhotographerApi extends Api {
             const data = await this.get();
 
             if (data.media) {
-                return data.media.filter(media => media.photographerId === photographerId);
+                return data.media.filter(media => media.photographerId.toString() === photographerId);
             } else {
                 throw new Error('La propriété "media" n\'est pas présente dans le fichier JSON.');
             }
