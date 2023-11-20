@@ -19,16 +19,13 @@ class MediaCardGallery {
         } else if (this._media.video) {
             // Si c'est une vidéo
             mediaContent = `
-                <video class="mediaImg" aria-label="Cliquer pour ouvrir le carrousel des œuvres et lire la vidéo" tabindex="0">
-                    <source src="assets/images/${this._photographer.name}/${this._media.video}" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
+                <video src="assets/images/${this._photographer.name}/${this._media.video}" type="video/mp4" class="mediaImg" aria-label="Cliquer pour ouvrir le carrousel des œuvres et lire la vidéo" tabindex="0"></video>
             `;
         }
 
         const mediaCard = `
             ${mediaContent}
-    <div class="media_info">
+            <div class="media_info">
                 <h2 class="media_title" tabindex="0">${this._media.title}</h2>
                 <p class="likes">
                     <span class="likes_nbr" aria-label="${this._media.likes} likes reçus" tabindex="0">${this._media.likes}</span>

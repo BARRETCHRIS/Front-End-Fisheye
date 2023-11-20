@@ -11,7 +11,7 @@ class PhotographerCard {
         const photographerCard = `
             <a class="photographer_link" target="blank" href="photographer.html?id=${this._photographer.id}">
                 <div class="portrait_wrap">
-                    <img src="../assets/photographers/${this._photographer.portrait}" class="photographer_portrait "alt="portrait de ${this._photographer.name}" aria-label="cliquer ou taper entrée pour ouvrir la galerie de ${this._photographer.name}">
+                    <img src="assets/photographers/${this._photographer.portrait}" class="photographer_portrait "alt="portrait de ${this._photographer.name}" aria-label="cliquer ou taper entrée pour ouvrir la galerie de ${this._photographer.name}">
                 </div>
                 <h2 class="photographer_name" aria-label="${this._photographer.name}">${this._photographer.name}</h2>
             </a>

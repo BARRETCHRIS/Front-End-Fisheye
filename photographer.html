@@ -22,15 +22,16 @@
     <main id="main">
       <section class="photograph-header" tabindex="0"></section>
       <section class="portfolio_section">
-        <!-- <div class="filters">
-          <label for="filterChoise" aria-label="Utilisez les touches fléchées pour changer de filtre">Trier par </label>
-          <select id="filterChoise" name="filterChoise" class="filter-choise"  onchange="filterMedias()">
+        <div class="filters">
+          <label for="orderChoise" aria-label="Utilisez les touches fléchées pour changer de filtre">Trier par </label>
+          <!-- <select id="orderChoise" name="orderChoise" class="order_choise" onchange="orderMedias()"> -->
+          <select id="orderChoise" name="orderChoise" class="order_choise">
             <option value="none" class="underline"> Pas de filtre</option>
             <option value="option1">Popularité</option>
-            <option value="option2" >Date</option>
+            <option value="option2">Date</option>
             <option value="option3">Titre</option>
           </select>
-        </div> -->
+        </div>
         <div class="gallery" role="list"></div> 
       </section>
     </main>
@@ -44,56 +45,33 @@
           </div>
           <img src="assets/icons/close.svg" onclick="closeModal()" alt="Fermer" aria-label="Cliquer pour fermer le formulaire" tabindex="2"/>
         </div>
+
         <form>
-          <label for="firstName">Prénom :</label>
-          <input type="text" id="firstName" name="firstName" autocomplete="given-name" required tabindex="3" aria-label="Entrez votre prénom">
+          <div class="formData">
+            <label for="firstName">Prénom :</label>
+            <input type="text" id="firstName" name="firstName" autocomplete="given-name" required tabindex="3" aria-label="Entrez votre prénom">
+          </div>
 
-          <label for="lastName">Nom :</label>
-          <input type="text" id="lastName" name="lastName" autocomplete="family-name" required tabindex="4" aria-label="Entrez votre nom de famille">
+          <div class="formData">
+            <label for="lastName">Nom :</label>
+            <input type="text" id="lastName" name="lastName" autocomplete="family-name" required tabindex="4" aria-label="Entrez votre nom de famille">
+          </div>
 
-          <label for="email">Email :</label>
-          <input type="email" id="email" name="email" autocomplete="email" required tabindex="5" aria-label="Entrez votre adresse e-mail">
+          <div class="formData">
+            <label for="email">Email :</label>
+            <input type="email" id="email" name="email" autocomplete="email" required tabindex="5" aria-label="Entrez votre adresse e-mail">
+          </div>
 
-          <label for="message">Votre message :</label>
-          <textarea id="message" name="message" rows="10" required tabindex="6" aria-label="Entrez votre message"></textarea>
+          <div class="formData">
+            <label for="message">Votre message :</label>
+            <textarea id="message" name="message" rows="10" required tabindex="6" aria-label="Entrez votre message"></textarea>
+          </div>
 
           <button type="submit" class="contact_button" aria-label="Cliquer pour envoyer le formulaire" tabindex="7">Envoyer</button>
         </form>
       </div>
     </div>
 
-
-    <!-- Modal de contact -->
-    <!-- <div id="contact_modal" class="contact_modal">
-			<div class="modal">
-				<div class="form_header">
-          <div class="form_header_name">
-            <h2>Contactez-moi</h2>
-            <p id="contact_name"></p>
-          </div>
-          <img src="assets/icons/close.svg" onclick="closeModal()" alt="Fermer" aria-label="Cliquer pour fermer le formulaire"/>
-        </div>
-				<form>
-					<div>
-						<label for="firstName">Prénom</label>
-            <input type="text" class="" id="firstName" name="firstName" autocomplete="given-name">
-					</div>
-          <div>
-						<label for="lastName">Nom</label>
-            <input type="text" class="" id="lastName" name="lastName" autocomplete="family-name">
-					</div>
-          <div>
-						<label for="email">Email</label>
-            <input type="email" class="" id="email" name="email" autocomplete="off">
-					</div>
-          <div>
-						<label for="message">Votre message</label>
-            <textarea name="message" id="message"  cols="70" rows="10"></textarea>
-					</div>
-          <button class="contact_button">Envoyer</button>
-				</form>  
-			</div>
-		</div> -->
     <!-- Lightbox -->
     <div id="lightbox" class="lightbox">
       <div class="lightbox-content">
@@ -109,7 +87,11 @@
     <script src="js/templates/mediaCardGallery.js"></script>
     <script src="js/templates/photographCardGallery.js"></script>
     <script src="js/api/api.js"></script>
-    <script src="js/appGallery.js"></script>
+
+    <script src="js/utils/orderGallery.js"></script>
+
+    <script type="module" src="js/appGallery.js"></script>
+    
 
     <script src="js/utils/form.js"></script>
     <!-- <script src="js/utils/lightbox.js"></script>
