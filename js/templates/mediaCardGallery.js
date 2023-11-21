@@ -8,8 +8,9 @@ class MediaCardGallery {
         const $articleWrap = document.createElement('div');
         $articleWrap.classList.add('media_card');
         $articleWrap.setAttribute('tabindex', '0');
+        $articleWrap.dataset.mediaId = this._media.id; // Ajoute cet attribut pour identifier le média
 
-        let mediaContent;
+        let mediaContent = '';
 
         if (this._media.image) {
             // Si c'est une image
@@ -27,8 +28,8 @@ class MediaCardGallery {
             ${mediaContent}
             <div class="media_info">
                 <h2 class="media_title" tabindex="0">${this._media.title}</h2>
-                <p class="likes">
-                    <span class="likes_nbr" aria-label="${this._media.likes} likes reçus" tabindex="0">${this._media.likes}</span>
+                <p class="likes" data-media-id="${this._media.id}" data-liked="false">
+                    <span class="likes_nbr" id="likesNbr-${this._media.id}" aria-label="${this._media.likes} likes reçus" tabindex="0">${this._media.likes}</span>
                     <i class="fa-solid fa-heart"></i>
                 </p>
                 <p class="media_date" aria-label="Créé le ${this._media.date}" tabindex="0">${this._media.date}</p>
@@ -36,7 +37,7 @@ class MediaCardGallery {
         `;
 
         $articleWrap.innerHTML = mediaCard;
-
+       console.log(typeof(this._media.likes));
         return $articleWrap;
     }
 }

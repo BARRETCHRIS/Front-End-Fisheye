@@ -72,17 +72,6 @@
     transition: background 300ms ease-in-out ;
 }
 
-/* .contact_modal{
-    position: absolute;
-    width: 100vw;
-    height: 100%;
-    overflow-y: auto;
-    top: 0;
-    background: rgba(254, 254, 254, 0.5);
-    padding: 50px 0;
-    z-index: 5000;
-} */
-
 .contact_modal{
     position: fixed;
     top: 0;
@@ -204,8 +193,7 @@ form input{
     justify-content: space-between;  
 } 
 
-.media_info h2,
-.media_info p {
+.media_info h2{
     margin: 0;
     padding-top: 5px;
     color: #901C1C;
@@ -215,9 +203,17 @@ form input{
     text-align: left;
     width: 80%;
 }
-.media_info p{
-    padding-top: 13px;
+
+.likes{
+    color: #901C1C;
+    margin-top: 13px;
     width: 20%;
+    cursor: pointer;
+}
+
+.likes:hover{
+    color: #DB8876;
+    transition: color 300ms ease-in-out ;
 }
 
 .likes_nbr{
