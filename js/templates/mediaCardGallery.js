@@ -37,7 +37,6 @@ class MediaCardGallery {
         `;
 
         $articleWrap.innerHTML = mediaCard;
-       console.log(typeof(this._media.likes));
         return $articleWrap;
     }
 }
