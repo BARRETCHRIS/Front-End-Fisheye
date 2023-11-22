@@ -18,6 +18,15 @@ class photographCardGallery {
                 <div class="portrait_wrap">
                     <img src="../assets/photographers/${this._photographer.portrait}" class="photographer_portrait "alt="portrait de ${this._photographer.name}" aria-label="Portrait de ${this._photographer.name}">
                 </div>
+            </div>
+            <div class="infos_bottom">
+                <span class="total_likes" aria-label="${this._photographer.name} totalise un nombre de likes de :">
+                    <span id="totalLikesNbre">${totalLikes}</span>
+                    <i class="fa-solid fa-heart"></i>
+                </span>
+                <span class="bottom_price" aria-label="${this._photographer.name} prend ${this._photographer.price}€ par jour">
+                    ${this._photographer.price}€ / jour
+                </span>
             </div>    
         `;
 

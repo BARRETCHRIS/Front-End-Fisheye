@@ -10,9 +10,8 @@ class AppGallery {
         await this.photographHeader();
         const orderChoise = document.getElementById('orderChoise');
 
-        // Restaure la valeur du sélecteur à partir du stockage local
-        const savedOrder = localStorage.getItem('orderChoise');
-        orderChoise.value = savedOrder !== null ? savedOrder : 'none';
+        // Restaure la valeur du sélecteur pour Firefox
+        orderChoise.value = 'none';
 
         // Gestionnaire d'événements pour le changement du sélecteur
         orderChoise.addEventListener('change', () => this.gallery(orderChoise.value));

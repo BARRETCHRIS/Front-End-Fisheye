@@ -225,7 +225,7 @@ form input{
   left: -9999px;
 }
 
-.infos-bottom{
+.infos_bottom{
     width: 250px;
     padding: 10px;
     display: flex;
