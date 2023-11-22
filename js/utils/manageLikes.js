@@ -1,4 +1,4 @@
-let mediaLikesArray;
+let mediaLikesArray = [];
 let totalLikes = 0;
 
 async function getMediaInfo() {
@@ -8,7 +8,7 @@ async function getMediaInfo() {
 
     if (photographerId) {
       const photographerApi = new PhotographerApi('/data/photographers.json');
-      const photographer = await photographerApi.getPhotographerById(id)
+      const photographer = await photographerApi.getPhotographerById(photographerId)
       const medias = await photographerApi.getMediaByPhotographerId(photographerId);
 
       // Méthode map pour créer un nouveau tableau avec les informations nécessaires
