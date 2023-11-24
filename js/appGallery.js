@@ -1,13 +1,21 @@
+// Classe principale pour l'application de la galerie
 class AppGallery {
     constructor() {
+	// Sélection des éléments HTML et initialisation d'instances de classes
         this.$photographerWrapper = document.querySelector('.photograph-header');
         this.$mediaWrapper = document.querySelector('.gallery');
         this.photographerApi = new PhotographerApi('/data/photographers.json');
         this.orderGalleryFactory = new OrderGalleryFactory();
+        this.mediaImg = document.querySelector('.mediaImg');
     }
 
+    /**
+     * Méthode d'initialisation de l'application
+     */
     async init() {
+        // Appelle la méthode pour afficher l'en-tête du photographe
         await this.photographHeader();
+        // Récupére l'élément du sélecteur pour l'ordre des médias
         const orderChoise = document.getElementById('orderChoise');
 
         // Restaure la valeur du sélecteur pour Firefox
@@ -17,10 +25,12 @@ class AppGallery {
         orderChoise.addEventListener('change', () => this.gallery(orderChoise.value));
 
         // Appel à la galerie initiale sans tri
-        this.gallery('');
-        
+        this.gallery('');   
     }
 
+    /**
+     * Méthode pour afficher l'en-tête du photographe
+     */
     async photographHeader() {
         // Récupérer l'ID du photographe depuis l'URL
         const urlParams = new URLSearchParams(window.location.search);
@@ -32,7 +42,7 @@ class AppGallery {
                 // Récupére le photographe spécifique par son ID
                 const photographer = await this.photographerApi.getPhotographerById(photographerId);
 
-                // Créé la carte du photographe et l'ajouter à la section
+                // Créé la carte du photographe et l'ajoute à la section
                 const template = new photographCardGallery(photographer, this.$photographerWrapper);
                 template.createPhotographCardGallery();
             } catch (error) {
@@ -43,15 +53,23 @@ class AppGallery {
         }
     }
 
+    /**
+     * Méthode pour afficher la galerie de médias
+     * @param {string} choise - L'option de tri
+     */
     async gallery(choise) {
+        // Récupére l'ID du photographe depuis l'URL
         const urlParams = new URLSearchParams(window.location.search);
         const photographerId = urlParams.get('id');
 
         if (photographerId) {
             try {
+                // Récupére les informations du photographe spécifique par son ID
                 const photographer = await this.photographerApi.getPhotographerById(photographerId);
+                // Récupére les médias associés au photographe
                 let medias = await this.photographerApi.getMediaByPhotographerId(photographerId);
 
+                // Trie les médias en fonction de l'option choisie
                 if (choise) {
                     const orderFactory = new OrderGalleryFactory(choise, medias);
                     medias = orderFactory.orderMedias();
@@ -60,14 +78,18 @@ class AppGallery {
                 // Efface le contenu existant de la galerie
                 this.$mediaWrapper.innerHTML = '';
 
+                // Affiche chaque média dans la galerie
                 medias.forEach(media => {
+                    // Crée un template de carte pour chaque média
                     const mediaTemplate = new MediaCardGallery(media, photographer);
+                    // Crée l'élément HTML correspondant
                     const mediaElement = mediaTemplate.createMediaCardGallery();
 
-                    // écouteur d'événements pour les clics sur les likes
+                    // Ajoute un écouteur d'événements pour les clics sur les likes
                     const likesElement = mediaElement.querySelector('.likes');
                     likesElement.addEventListener('click', () => this.handleLikeClick(media.id));
 
+                    // Ajoute les éléments medias à la galerie
                     this.$mediaWrapper.appendChild(mediaElement);
                 });
             } catch (error) {
@@ -75,16 +97,19 @@ class AppGallery {
             }
         } else {
             console.error('Photographer ID not found in the URL');
-        }
-        
+        } 
     }
-    // Méthode pour gérer les clics sur les likes
+
+    /**
+     * Méthode pour gérer les clics sur les likes
+     * @param {string} mediaId - L'ID du média
+     */
     handleLikeClick(mediaId) {
+        // Appel à la fonction externe pour gérer les likes
         toggleLike(mediaId);
     }
-    
 }
 
+// Instance de l'application de galerie
 const appGallery = new AppGallery();
 appGallery.init();
-

@@ -1,35 +1,35 @@
-class Api {
+class Api { //Définit une classe Api.
     /**
      * 
      * @param {string} url 
      */
     constructor(url) {
-        this._url = url;
+        this._url = url; //Le constructeur prend une URL en paramètre et initialise la propriété _url de l'instance de la classe avec cette URL.
     }
 
-    async get() {
+    async get() { //La méthode get utilise fetch pour récupérer les données à partir de l'URL spécifiée.
         try {
             const response = await fetch(this._url);
             const data = await response.json();
-            return data;
+            return data; //Elle retourne les données JSON obtenues.
         } catch (error) {
             console.log('An error occurred:', error);
-            throw error; // Propagate the error further
+            throw error; // Propagate the error further - En cas d'erreur, elle imprime un message dans la console et propage l'erreur.
         }
     }
 }
 
-class PhotographerApi extends Api {
+class PhotographerApi extends Api { //Définit une classe PhotographerApi qui hérite de la classe Api.
     /**
      * 
      * @param {string} url 
      */
     constructor(url) {
-        super(url);
+        super(url); //Appelle le constructeur de la classe parente avec l'URL fournie.
     }
 
     // Get Photographers data
-    async getPhotographers() {
+    async getPhotographers() { //Utilise la méthode get de la classe parente pour obtenir les données, puis retourne la liste des photographes.
         try {
             const data = await this.get();
             return data.photographers || [];
@@ -39,7 +39,7 @@ class PhotographerApi extends Api {
         }
     }
 
-    async getPhotographerById(id) {
+    async getPhotographerById(id) { //Utilise la méthode get de la classe parente pour obtenir les données, puis retourne un photographe selon son ID.
         try {
             const data = await this.get();
             const photographers = data.photographers || [];
@@ -58,7 +58,7 @@ class PhotographerApi extends Api {
         }
     }
 
-    async getMedias() {
+    async getMedias() { //Utilise la méthode get de la classe parente pour obtenir les données, puis retourne la liste des medias.
         try {
             const data = await this.get();
             return data.media || [];
@@ -68,7 +68,7 @@ class PhotographerApi extends Api {
         }
     }
 
-    async getMediaByPhotographerId(photographerId) {
+    async getMediaByPhotographerId(photographerId) { //Utilise la méthode get de la classe parente pour obtenir les données, puis retourne la liste des medias selon l'id d'un photographe particulier.
         try {
             const data = await this.get();
 

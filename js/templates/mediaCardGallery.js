@@ -1,10 +1,14 @@
+// Classe représentant la carte média dans la galerie
 class MediaCardGallery {
     constructor(media, photographer) {
+        // Stocke les informations sur le média et le photographe associé
         this._media = media;
         this._photographer = photographer;
     }
 
+    // Méthode pour créer la carte média dans la galerie
     createMediaCardGallery() {
+        // Crée un conteneur <div> pour la carte média
         const $articleWrap = document.createElement('div');
         $articleWrap.classList.add('media_card');
         $articleWrap.setAttribute('tabindex', '0');
@@ -12,6 +16,7 @@ class MediaCardGallery {
 
         let mediaContent = '';
 
+        // Génére le contenu média en fonction du type (image ou vidéo)
         if (this._media.image) {
             // Si c'est une image
             mediaContent = `
@@ -24,6 +29,7 @@ class MediaCardGallery {
             `;
         }
 
+        // Modèle HTML pour la carte média
         const mediaCard = `
             ${mediaContent}
             <div class="media_info">
@@ -36,7 +42,9 @@ class MediaCardGallery {
             </div>
         `;
 
+        // Injecte le HTML généré dans le conteneur <div>
         $articleWrap.innerHTML = mediaCard;
+        // Retourne le conteneur <div> contenant la carte média
         return $articleWrap;
     }
 }

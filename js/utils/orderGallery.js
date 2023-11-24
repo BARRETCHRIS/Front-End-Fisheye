@@ -1,26 +1,24 @@
+// Classe représentant une fabrique d'ordre pour la galerie de médias
 class OrderGalleryFactory {
-    // constructor(orderChoise, medias) {
-    //     this._orderChoise = orderChoise;
-    //     this._medias = medias;
-    // }
-
     constructor(choise, medias) {
+        // Stocke le choix de tri et la liste de médias à trier
         this._choise = choise;
         this._medias = medias;
     }
 
+    // Méthode pour trier les médias en fonction du choix de l'utilisateur
     orderMedias() {
         switch (this._choise) {
             case 'option1':
-                // Trier par popularité
+                // Trie par popularité
                 this._medias.sort((a, b) => b.likes - a.likes);
                 break;
             case 'option2':
-                // Trier par date
+                // Trie par date
                 this._medias.sort((a, b) => new Date(b.date) - new Date(a.date));
                 break;
             case 'option3':
-                // Trier par titre
+                // Trie par titre
                 this._medias.sort((a, b) => a.title.localeCompare(b.title));
                 break;
             default:
@@ -28,9 +26,7 @@ class OrderGalleryFactory {
                 break;
         }
         
+        // Retourne la liste triée de médias
         return this._medias;
     }
 }
-
-// Exports
-// export default OrderGalleryFactory;

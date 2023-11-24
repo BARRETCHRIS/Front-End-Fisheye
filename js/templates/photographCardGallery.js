@@ -1,10 +1,14 @@
+// Classe représentant la carte du photographe dans la galerie
 class photographCardGallery {
     constructor(photographer, targetElement) {
+        // Stocker les informations sur le photographe et l'élément cible
         this._photographer = photographer
         this.$wrapper = targetElement;
     }
 
+    // Méthode pour créer la carte du photographe dans la galerie
     createPhotographCardGallery() {
+        // Modèle HTML de la carte du photographe
         const photographHeaderCard = `
             <div class="surname" aria-label="Informations sur le photographe" tabindex="0">
                 <h1 class="photographer_name" aria-label="${this._photographer.name}">${this._photographer.name}</h1>
@@ -30,7 +34,7 @@ class photographCardGallery {
             </div>    
         `;
 
-        // Insérer le HTML directement dans le wrapper à la fin
+        // Insére le HTML directement dans le wrapper à la fin
         this.$wrapper.insertAdjacentHTML('beforeend', photographHeaderCard);
     }
 }
