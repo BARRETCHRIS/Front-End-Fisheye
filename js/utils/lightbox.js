@@ -13,6 +13,18 @@ function closeLightbox() {
     lightboxMedia.innerHTML = '';
 }
 
+function initKeyboardNavigation() {
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'ArrowLeft') {
+            showPrevMedia();
+        } else if (event.key === 'ArrowRight') {
+            showNextMedia();
+        } else if (event.key === 'Enter' && event.target.classList.contains('close-lightbox')) {
+            closeLightbox();
+        }
+    });
+}
+
 function showMediaInLightbox(galleryMedias, galleryPhotographer, clickedMedia, clickedMediaImg) {
     const lightboxMedia = document.getElementById('lightboxMedia');
 
@@ -24,19 +36,20 @@ function showMediaInLightbox(galleryMedias, galleryPhotographer, clickedMedia, c
     galleryMedias.forEach((media, index) => {
         const visibilityClass = index === clickedMediaIndex ? 'visible' : 'hidden';
         if (media.image) {
-            mediaContent += `<div class="lightbox-media-item ${visibilityClass}" data-index="${index}">
+            mediaContent += `<div class="lightbox-media-item ${visibilityClass}" data-index="${index}" aria_label="${media.title}" tabindex="0">
                                 <img src="assets/images/${galleryPhotographer.name}/${media.image}" alt="${media.title}" tabindex="0">
-                                <h3>${media.title}</h3>
+                                <h3 class="media_title_lightbox" tabindex="0">${media.title}</h3>
                             </div>`;
         } else if (media.video) {
-            mediaContent += `<div class="lightbox-media-item ${visibilityClass}" data-index="${index}">
-                                <video src="assets/images/${galleryPhotographer.name}/${media.video}" type="video/mp4" tabindex="0" controls autoplay></video>
-                                <h3>${media.title}</h3>
+            mediaContent += `<div class="lightbox-media-item ${visibilityClass}" data-index="${index}" aria_label="${media.title}" tabindex="0">
+                                <video src="assets/images/${galleryPhotographer.name}/${media.video}" type="video/mp4" alt="${media.title}" tabindex="0" controls autoplay></video>
+                                <h3 class="media_title_lightbox" tabindex="0">${media.title}</h3>
                             </div>`;
         }
     });
 
     lightboxMedia.innerHTML = mediaContent;
+    initKeyboardNavigation();
 }
 
 
@@ -69,5 +82,4 @@ function navigateMedia(direction) {
         }
     }
 }
-
 

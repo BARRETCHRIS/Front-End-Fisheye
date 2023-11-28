@@ -73,12 +73,12 @@
 
     <!-- Lightbox -->
     <div id="lightbox" class="lightbox">
-      <div class="lightbox-content">
-        <span class="close-lightbox" onclick="closeLightbox()" alt="Fermer" aria-label="Cliquer pour fermer la lightbox">&times;</span>
+      <div class="lightbox-content" aria-label="naviguer dans la lightbox avec les touches fléchées droite et gauche" tabindex="0">
+        <span class="close-lightbox" onclick="closeLightbox()" alt="Fermer" aria-label="Cliquer ou taper entrée pour fermer la lightbox" tabindex="0">&times;</span>
         <div class="lightbox-navigation">
-          <span class="prev-media" onclick="showPrevMedia()">&#10094;</span>
+          <span class="prev-media" onclick="showPrevMedia()" aria-label="Cliquer ou taper la touche fléchée gauche pour afficher le media précédent" tabindex="0">&#10094;</span>
           <div class="lightbox-media" id="lightboxMedia"></div>
-          <span class="next-media" onclick="showNextMedia()">&#10095;</span>
+          <span class="next-media" onclick="showNextMedia()" aria-label="Cliquer ou taper la touche fléchée droite pour afficher le media suivant" tabindex="0">&#10095;</span>
         </div>
       </div>
     </div>
