@@ -1,3 +1,6 @@
+// let galleryMedias = [];
+// let galleryPhotographer = {};
+
 // Classe principale pour l'application de la galerie
 class AppGallery {
     constructor() {
@@ -7,6 +10,10 @@ class AppGallery {
         this.photographerApi = new PhotographerApi('/data/photographers.json');
         this.orderGalleryFactory = new OrderGalleryFactory();
         this.mediaImg = document.querySelector('.mediaImg');
+
+
+        this.galleryMedias = [];
+        this.galleryPhotographer = {};
     }
 
     /**
@@ -45,6 +52,9 @@ class AppGallery {
                 // Créé la carte du photographe et l'ajoute à la section
                 const template = new photographCardGallery(photographer, this.$photographerWrapper);
                 template.createPhotographCardGallery();
+                this.galleryPhotographer = photographer;
+                console.log(this.galleryPhotographer);
+                return this.galleryPhotographer;
             } catch (error) {
                 console.error('An error occurred while fetching the photographer:', error);
             }
@@ -91,7 +101,19 @@ class AppGallery {
 
                     // Ajoute les éléments medias à la galerie
                     this.$mediaWrapper.appendChild(mediaElement);
+
+                    // Ajoute un écouteur d'événements pour ouvrir la lightbox lors du clic sur une image ou vidéo
+                    const mediaImg = mediaElement.querySelector(".mediaImg");
+                    mediaImg.addEventListener('click', (event) => {
+                        // Vérifie si l'élément clic est une image ou une vidéo avec la classe "mediaImg"
+                        if (event.target.classList.contains('mediaImg')) {
+                            this.openLightboxHandler(mediaImg, media);
+                        }
+                    });  
                 });
+                this.galleryMedias = medias;
+                // console.log(this.galleryMedias);
+                return this.galleryMedias;
             } catch (error) {
                 console.error('An error occurred while fetching the media:', error);
             }
@@ -108,6 +130,21 @@ class AppGallery {
         // Appel à la fonction externe pour gérer les likes
         toggleLike(mediaId);
     }
+
+    /**
+     * Méthode pour ouvrir la lightbox avec le média donné
+     * @param {HTMLElement} mediaImg - L'élément de l'image ou de la vidéo cliquée
+     * @param {Object} media - Les informations sur le média
+     */
+    openLightboxHandler(mediaImg, media) {
+        // Ouvre la lightbox
+        openLightbox();
+
+        // Affiche le média dans la lightbox
+        showMediaInLightbox(this.galleryMedias, this.galleryPhotographer, media, mediaImg);
+    }
+
+    
 }
 
 // Instance de l'application de galerie

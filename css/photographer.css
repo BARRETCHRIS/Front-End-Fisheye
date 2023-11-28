@@ -282,3 +282,17 @@ form input{
   font-size: 36px;
   color: #888;
 }
+
+.lightbox-media-item {
+    display: none;
+}
+
+.lightbox-media-item.visible {
+    display: block;
+}
+
+.lightbox-media-item.hidden {
+    display: none;
+}
+
+
