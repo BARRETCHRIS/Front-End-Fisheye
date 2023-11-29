@@ -46,27 +46,57 @@ function closeModal() {
     modal.style.display = "none";
 }
 
-// Fonction pour générer et afficher des messages d'erreur
+// // Fonction pour générer et afficher des messages d'erreur
+// function generateErrorMessage(tag, errorMessage) {
+//     const parentContainer = tag.parentNode;
+//     const errorContainer = parentContainer.querySelector(".error-msg");
+
+//     if (errorMessage) {
+//         parentContainer.classList.add("error");
+//         if (!errorContainer) {
+//             const newErrorContainer = document.createElement("div");
+//             newErrorContainer.classList.add("error-msg");
+//             newErrorContainer.textContent = errorMessage;
+//             parentContainer.appendChild(newErrorContainer);
+//         } else {
+//             errorContainer.textContent = errorMessage;
+//         }
+//     } else {
+//         parentContainer.classList.remove("error");
+//         if (errorContainer) {
+//             errorContainer.remove();
+//         }
+//     }
+// }
+
 function generateErrorMessage(tag, errorMessage) {
     const parentContainer = tag.parentNode;
     const errorContainer = parentContainer.querySelector(".error-msg");
 
     if (errorMessage) {
         parentContainer.classList.add("error");
+        tag.setAttribute("aria-invalid", "true"); // Indiquer que le champ a une erreur
         if (!errorContainer) {
             const newErrorContainer = document.createElement("div");
             newErrorContainer.classList.add("error-msg");
             newErrorContainer.textContent = errorMessage;
+            newErrorContainer.setAttribute("role", "alert"); // Rôle d'alerte pour annoncer dynamiquement
             parentContainer.appendChild(newErrorContainer);
         } else {
             errorContainer.textContent = errorMessage;
         }
     } else {
         parentContainer.classList.remove("error");
+        tag.removeAttribute("aria-invalid"); // Enlever l'indication d'erreur
         if (errorContainer) {
             errorContainer.remove();
         }
     }
+}
+
+function announceError(errorMessage) {
+    const status = document.getElementById("status");
+    status.textContent = errorMessage;
 }
 
 // Check if inputs are empty and generate an error message if necessary.
@@ -82,6 +112,7 @@ function checkEmptyInput(tag){
         emptyCheck = true; // Change boolean value if conditions no check
     } catch (error) {
         generateErrorMessage(tag, error.message); // If field empty, generate error message.
+        announceError(error.message); // Annoncer l'erreur globale
     }
     return emptyCheck; // returns check varialble(true or false)
 }
@@ -97,6 +128,7 @@ function checkText(tag){
         textCheck = true; //Change boolean value if conditions no check
     } catch (error) {
         generateErrorMessage(tag, error.message); // If field dont match pattern, generate error message.
+        announceError(error.message); // Annoncer l'erreur globale
     }
     return textCheck; // returns check varialble(true or false)
 }
@@ -111,15 +143,63 @@ function checkEmail(tag){
         emailCheck = true; //Change boolean value if condition no check
     } catch (error) {
         generateErrorMessage(tag, error.message); // If field dont match pattern, generate error message.
+        announceError(error.message); // Annoncer l'erreur globale
     }
     return emailCheck; // returns check varialble(true or false)
 }
 
+// // Vérification du formulaire lors de la soumission
+// form.addEventListener("submit", (event) => {
+//     event.preventDefault();
+
+//     const formInputsArray = Array.from(form.elements).filter(input => input.type !== "submit" && input.tagName.toLowerCase() !== "textarea");
+
+//     const validationResults = formInputsArray.map((input, index) => {
+//         let checksResults = {};
+
+//         if (input.getAttribute('type') !== "radio" && input.getAttribute('type') !== "checkbox") {
+//             checksResults.emptyCheck = checkEmptyInput(input);
+//             console.log(`Empty check for ${input.id}: ${checksResults.emptyCheck}`);
+//         }
+
+//         if (input.getAttribute('type') === "text") {
+//             checksResults.textCheck = checkText(input);
+//             console.log(`Text check for ${input.id}: ${checksResults.textCheck}`);
+//         }
+
+//         if (input.getAttribute('type') === "email") {
+//             checksResults.emailCheck = checkEmail(input);
+//             console.log(`Email check for ${input.id}: ${checksResults.emailCheck}`);
+//         }
+
+//         return checksResults;
+//     });
+
+//     const allChecksTrue = validationResults.every(resultObj => {
+//         return Object.values(resultObj).every(check => check === true);
+//     });
+
+//     if (allChecksTrue) {
+//         console.log("Good Send");
+//         closeModal();
+//         // Vider les champs du formulaire
+//         form.reset();
+//     } else {
+//         console.log("Form validation failed");
+//     }
+// });
+
+// Fonction pour annoncer les messages
+function announce(message) {
+    const status = document.getElementById("status");
+    status.textContent = message;
+}
+
 // Vérification du formulaire lors de la soumission
-form.addEventListener("submit", (event) => {
+form.addEventListener("submit", async (event) => {
     event.preventDefault();
 
-    const formInputsArray = Array.from(form.elements).filter(input => input.type !== "submit");
+    const formInputsArray = Array.from(form.elements).filter(input => input.type !== "submit" && input.tagName.toLowerCase() !== "textarea");
 
     const validationResults = formInputsArray.map((input, index) => {
         let checksResults = {};
@@ -142,14 +222,40 @@ form.addEventListener("submit", (event) => {
         return checksResults;
     });
 
-    const allChecksTrue = validationResults.every(resultObj => {
-        return Object.values(resultObj).every(check => check === true);
-    });
+    const errorMessages = validationResults
+        .flatMap(resultObj => Object.values(resultObj))
+        .filter(check => check !== true)
+        .map(error => error.message);  // Utiliser error.message pour obtenir le message d'erreur
 
-    if (allChecksTrue) {
+    const status = document.getElementById("status");
+
+    if (errorMessages.length === 0) {
         console.log("Good Send");
         closeModal();
+
+        // Vider les champs du formulaire
+        form.reset();
+
+        // Effacer les messages d'erreur après une soumission réussie
+        status.textContent = '';
+        status.removeAttribute("role"); // Enlever le rôle d'alerte après la soumission réussie
+
+        // Annoncer le succès
+        announce("Formulaire soumis avec succès");
     } else {
         console.log("Form validation failed");
+
+        // Afficher tous les messages d'erreur distincts dans la div "status"
+        status.innerHTML = ''; // Supprimer les anciens messages
+        errorMessages.forEach(errorMessage => {
+            const errorDiv = document.createElement('div');
+            errorDiv.textContent = errorMessage;
+            errorDiv.setAttribute("role", "alert");
+            status.appendChild(errorDiv);
+        });
+        status.setAttribute("aria-live", "assertive"); // Ajouter le rôle assertive
+
+        // Annoncer les erreurs
+        announce("Le formulaire contient des erreurs. Veuillez les corriger.");
     }
 });
