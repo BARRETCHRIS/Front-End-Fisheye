@@ -109,7 +109,14 @@ class AppGallery {
                         if (event.target.classList.contains('mediaImg')) {
                             this.openLightboxHandler(mediaImg, media);
                         }
-                    });  
+                    }); 
+
+                    // Ajoute un écouteur d'événements pour ouvrir la lightbox en appuyant sur la touche "Entrée"
+                    mediaElement.addEventListener('keydown', (event) => {
+                        if (event.key === 'Enter' && event.target.classList.contains('mediaImg')) {
+                            this.openLightboxHandler(mediaImg, media);
+                        }
+                    }); 
                 });
                 this.galleryMedias = medias;
                 // console.log(this.galleryMedias);
