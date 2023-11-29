@@ -42,10 +42,11 @@
             <h2 aria-label="Contactez">Contactez-moi</h2>
             <p aria-label="nom du photographe" id="contact_name"></p>
           </div>
-          <img src="assets/icons/close.svg" onclick="closeModal()" alt="Fermer" aria-label="Cliquer pour fermer le formulaire" tabindex="2"/>
+          <img src="assets/icons/close.svg" onclick="closeModal()" alt="Fermer" aria-label="Cliquer pour fermer le formulaire" tabindex="2" role="bouton"/>
         </div>
 
-        <form>
+        <form action="index.html" method="get" novalidate>
+
           <div class="formData">
             <label for="firstName">Prénom :</label>
             <input type="text" id="firstName" name="firstName" autocomplete="given-name" required tabindex="3" aria-label="Entrez votre prénom">
@@ -53,53 +54,50 @@
 
           <div class="formData">
             <label for="lastName">Nom :</label>
-            <input type="text" id="lastName" name="lastName" autocomplete="family-name" required tabindex="4" aria-label="Entrez votre nom de famille">
+            <input type="text" id="lastName" class="text-control" name="lastName" autocomplete="family-name" required tabindex="4" aria-label="Entrez votre nom de famille">
           </div>
 
           <div class="formData">
             <label for="email">Email :</label>
-            <input type="email" id="email" name="email" autocomplete="email" required tabindex="5" aria-label="Entrez votre adresse e-mail">
+            <input type="email" id="email" class="text-control" name="email" autocomplete="email" required tabindex="5" aria-label="Entrez votre adresse e-mail">
           </div>
 
           <div class="formData">
             <label for="message">Votre message :</label>
-            <textarea id="message" name="message" rows="10" required tabindex="6" aria-label="Entrez votre message"></textarea>
+            <textarea id="message" class="text-control" name="message" rows="10" required tabindex="6" aria-label="Entrez votre message"></textarea>
           </div>
 
-          <button type="submit" class="contact_button" aria-label="Cliquer pour envoyer le formulaire" tabindex="7">Envoyer</button>
+          <button type="submit" class="btn-submit" aria-label="Cliquer pour envoyer le formulaire" tabindex="7">Envoyer</button>
         </form>
       </div>
     </div>
 
     <!-- Lightbox -->
     <div id="lightbox" class="lightbox">
-      <div class="lightbox-content" aria-label="naviguer dans la lightbox avec les touches fléchées droite et gauche" tabindex="0">
-        <span class="close-lightbox" onclick="closeLightbox()" alt="Fermer" aria-label="Cliquer ou taper entrée pour fermer la lightbox" tabindex="0">&times;</span>
+      <div class="lightbox-content" aria-label="naviguer dans la lightbox avec les touches fléchées droite et gauche" tabindex="1">
+        <span class="close-lightbox" onclick="closeLightbox()" alt="Fermer" aria-label="Cliquer ou taper entrée pour fermer la lightbox" tabindex="2" role="bouton">&times;</span>
         <div class="lightbox-navigation">
-          <span class="prev-media" onclick="showPrevMedia()" aria-label="Cliquer ou taper la touche fléchée gauche pour afficher le media précédent" tabindex="0">&#10094;</span>
+          <span class="prev-media" onclick="showPrevMedia()" aria-label="Cliquer ou taper la touche fléchée gauche pour afficher le media précédent" tabindex="3" role="bouton">&#10094;</span>
           <div class="lightbox-media" id="lightboxMedia"></div>
-          <span class="next-media" onclick="showNextMedia()" aria-label="Cliquer ou taper la touche fléchée droite pour afficher le media suivant" tabindex="0">&#10095;</span>
+          <span class="next-media" onclick="showNextMedia()" aria-label="Cliquer ou taper la touche fléchée droite pour afficher le media suivant" tabindex="4" role="bouton">&#10095;</span>
         </div>
       </div>
     </div>
 
+    <!-- api file -->
     <script src="js/api/api.js"></script>
+
+    <!-- template file -->
     <script src="js/templates/mediaCardGallery.js"></script>
     <script src="js/templates/photographCardGallery.js"></script>
 
+    <!-- utils file -->
     <script src="js/utils/form.js"></script>
-
     <script src="js/utils/orderGallery.js"></script>
-
     <script src="js/utils/manageLikes.js"></script>
-
-    <!-- <script src="js/utils/lightbox.js"></script> -->
-
-    <script type="module" src="js/appGallery.js"></script>
-
     <script src="js/utils/lightbox.js"></script>
-    
-    
-    
+
+    <!-- Entry point -->
+    <script type="module" src="js/appGallery.js"></script> 
   </body>
 </html>

@@ -142,9 +142,7 @@ class AppGallery {
 
         // Affiche le média dans la lightbox
         showMediaInLightbox(this.galleryMedias, this.galleryPhotographer, media, mediaImg);
-    }
-
-    
+    }   
 }
 
 // Instance de l'application de galerie

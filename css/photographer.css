@@ -52,7 +52,7 @@
     object-fit: cover;
 }
 
-.contact_button {
+.contact_button, .btn-submit{
     font-size: 20px;
     font-weight: bold;
     color: white;
@@ -66,10 +66,14 @@
     transition: background 300ms ease-in-out ;
 }
 
-.contact_button:hover{
+.contact_button:hover,.btn-submit:hover{
     color: black;
     background: #DB8876;
     transition: background 300ms ease-in-out ;
+}
+
+.btn-submit:hover{
+    border: #312E2E 1px solid;
 }
 
 .contact_modal{
@@ -137,7 +141,7 @@ form label {
     font-size: 30px;
 }
 
-form label, .contact_button{
+form label, .btn-submit{
     margin-top: 20px;
 }
 
@@ -149,6 +153,27 @@ form input, form textarea {
 
 form input{
     height: 68px;
+}
+
+.error-msg{
+  font-size: 10px;
+  color: black;
+  margin-top: 7px;
+  margin-bottom: 7px;
+}
+
+.text-control {
+  margin: 0;
+  padding: 8px;
+  width: 100%;
+  border-radius: 8px;
+  font-size: 20px;
+  height: 48px;
+  border: none;
+}
+
+.txt-control-error{
+  border: #fe142f 2px solid;
 }
 
 .portfolio_section{
@@ -256,43 +281,56 @@ form input{
   padding: 20px;
   background-color: #fefefe;
   text-align: center;
-  border: 1px solid #888;
   width: 80%;
+  height: 80vh;
+  color: #901C1C;
 }
 
 .close-lightbox {
   position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 36px;
+  top: 5px;
+  right: 15px;
+  font-size: 50px;
   cursor: pointer;
-}
-
-.lightbox-media img,
-.lightbox-media video {
-  max-width: 100%;
-  max-height: 80vh;
-  margin: 0 auto;
 }
 
 .lightbox-navigation {
   display: flex;
   justify-content: space-between;
-  margin-top: 10px;
+  margin: 10px 0;
   font-size: 36px;
-  color: #888;
+  
+}
+
+.prev-media, .next-media{
+    margin: auto 0;
+    cursor: pointer;
 }
 
 .lightbox-media-item {
     display: none;
+    
 }
 
 .lightbox-media-item.visible {
     display: block;
+    object-fit: none;
+    width: 100%;
+    height: 100%;
 }
 
 .lightbox-media-item.hidden {
     display: none;
 }
 
+.lightbox-media img,
+.lightbox-media video {
+  max-height: 70vh;
+  margin: 0 auto;
+}
 
+.media_title_lightbox{
+    font-size: 24px;
+    margin: 0;
+    text-align: left;
+}
