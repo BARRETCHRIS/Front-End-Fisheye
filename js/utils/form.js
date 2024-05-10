@@ -32,6 +32,18 @@ async function getPhotographerData(photographerId) {
     }
 }
 
+function handleEnterKeyPress(event) {
+    const modal = document.getElementById("contact_modal");
+    if (event.key === 'Enter') {
+        if (modal.style.display === "block") {
+            closeModal();
+        } else {
+            displayModal();
+        }
+        event.preventDefault(); // Pour éviter le comportement par défaut du bouton dans le formulaire
+    }
+}
+
 function displayModal() {
     const modal = document.getElementById("contact_modal");
     modal.style.display = "block";
@@ -39,35 +51,25 @@ function displayModal() {
     const urlParams = new URLSearchParams(window.location.search);
     const photographerId = urlParams.get('id');
     getPhotographerData(photographerId);
+
+    // Ajoute le gestionnaire d'événements pour la touche "Entrée"
+    const contactButton = document.querySelector(".contact_button");
+    contactButton.addEventListener("keydown", handleEnterKeyPress);
+
+    // Ajoute le gestionnaire d'événements pour fermer la modal en appuyant sur "Entrée"
+    const closeButton = document.querySelector(".close-form");
+    closeButton.addEventListener("keydown", handleEnterKeyPress);
+
 }
 
 function closeModal() {
     const modal = document.getElementById("contact_modal");
     modal.style.display = "none";
+
+    // Retire le gestionnaire d'événements pour la touche "Entrée"
+    const closeButton = document.querySelector(".close-form");
+    closeButton.removeEventListener("keydown", handleEnterKeyPress);
 }
-
-// // Fonction pour générer et afficher des messages d'erreur
-// function generateErrorMessage(tag, errorMessage) {
-//     const parentContainer = tag.parentNode;
-//     const errorContainer = parentContainer.querySelector(".error-msg");
-
-//     if (errorMessage) {
-//         parentContainer.classList.add("error");
-//         if (!errorContainer) {
-//             const newErrorContainer = document.createElement("div");
-//             newErrorContainer.classList.add("error-msg");
-//             newErrorContainer.textContent = errorMessage;
-//             parentContainer.appendChild(newErrorContainer);
-//         } else {
-//             errorContainer.textContent = errorMessage;
-//         }
-//     } else {
-//         parentContainer.classList.remove("error");
-//         if (errorContainer) {
-//             errorContainer.remove();
-//         }
-//     }
-// }
 
 function generateErrorMessage(tag, errorMessage) {
     const parentContainer = tag.parentNode;
@@ -136,7 +138,7 @@ function checkText(tag){
 function checkEmail(tag){
     let emailCheck = false; // Initialize the Boolean check variable as the result of the function
     try {
-        if (!tag.value.match(regEmail)) { //checks if input dont matcht with pattern regEmail (files : config.js)
+        if (!tag.value.match(regEmail)) { //checks if input dont matcht with pattern regEmail
             throw new Error(msgError.email); // If dont match, throw error specific message.
         }
         generateErrorMessage(tag, null); // If field match, clear existing error message.
@@ -147,47 +149,6 @@ function checkEmail(tag){
     }
     return emailCheck; // returns check varialble(true or false)
 }
-
-// // Vérification du formulaire lors de la soumission
-// form.addEventListener("submit", (event) => {
-//     event.preventDefault();
-
-//     const formInputsArray = Array.from(form.elements).filter(input => input.type !== "submit" && input.tagName.toLowerCase() !== "textarea");
-
-//     const validationResults = formInputsArray.map((input, index) => {
-//         let checksResults = {};
-
-//         if (input.getAttribute('type') !== "radio" && input.getAttribute('type') !== "checkbox") {
-//             checksResults.emptyCheck = checkEmptyInput(input);
-//             console.log(`Empty check for ${input.id}: ${checksResults.emptyCheck}`);
-//         }
-
-//         if (input.getAttribute('type') === "text") {
-//             checksResults.textCheck = checkText(input);
-//             console.log(`Text check for ${input.id}: ${checksResults.textCheck}`);
-//         }
-
-//         if (input.getAttribute('type') === "email") {
-//             checksResults.emailCheck = checkEmail(input);
-//             console.log(`Email check for ${input.id}: ${checksResults.emailCheck}`);
-//         }
-
-//         return checksResults;
-//     });
-
-//     const allChecksTrue = validationResults.every(resultObj => {
-//         return Object.values(resultObj).every(check => check === true);
-//     });
-
-//     if (allChecksTrue) {
-//         console.log("Good Send");
-//         closeModal();
-//         // Vider les champs du formulaire
-//         form.reset();
-//     } else {
-//         console.log("Form validation failed");
-//     }
-// });
 
 // Fonction pour annoncer les messages
 function announce(message) {
@@ -231,6 +192,10 @@ form.addEventListener("submit", async (event) => {
 
     if (errorMessages.length === 0) {
         console.log("Good Send");
+        console.log(firstName.value);
+        console.log(lastName.value);
+        console.log(email.value);
+        console.log(message.value);
         closeModal();
 
         // Vider les champs du formulaire
@@ -259,3 +224,4 @@ form.addEventListener("submit", async (event) => {
         announce("Le formulaire contient des erreurs. Veuillez les corriger.");
     }
 });
+

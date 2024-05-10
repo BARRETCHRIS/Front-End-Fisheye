@@ -1,5 +1,6 @@
 let galleryMediasArray = ""
 
+
 function openLightbox() {
     const lightbox = document.getElementById('lightbox');
     lightbox.style.display = 'flex'; // Utilise 'flex' pour laisser les éléments occuper l'espace disponible

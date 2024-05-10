@@ -15,8 +15,8 @@ class photographCardGallery {
                 <p class="city_wrap">${this._photographer.city}, ${this._photographer.country}</p>
                 <p class="tagline">${this._photographer.tagline}</p>
             </div>
-            <div class="btn-wrap" aria-label="Bouton de contact" tabindex="0">
-                <button class="contact_button" onclick="displayModal()" aria-label="Taper entrée pour ouvrir le formulaire de contact">Contactez-moi</button>
+            <div class="btn-wrap" aria-label="Bouton de contact">
+                <button class="contact_button" onclick="displayModal()" aria-label="Taper entrée pour ouvrir le formulaire de contact" tabindex="0">Contactez-moi</button>
             </div>
             <div class="portrait" aria-label="Portrait" tabindex="0">
                 <div class="portrait_wrap">
@@ -24,11 +24,11 @@ class photographCardGallery {
                 </div>
             </div>
             <div class="infos_bottom">
-                <span class="total_likes" aria-label="${this._photographer.name} totalise un nombre de likes de :">
-                    <span id="totalLikesNbre">${totalLikes}</span>
+                <span class="total_likes" aria-label="${this._photographer.name} totalise un nombre de likes de : ${totalLikes}" tabindex="0">
+                    <span id="totalLikesNbre" tabindex="0">${totalLikes}</span>
                     <i class="fa-solid fa-heart"></i>
                 </span>
-                <span class="bottom_price" aria-label="${this._photographer.name} prend ${this._photographer.price}€ par jour">
+                <span class="bottom_price" aria-label="${this._photographer.name} prend ${this._photographer.price}€ par jour" tabindex="0">
                     ${this._photographer.price}€ / jour
                 </span>
             </div>    

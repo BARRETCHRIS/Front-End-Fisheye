@@ -109,7 +109,7 @@ class AppGallery {
                         if (event.target.classList.contains('mediaImg')) {
                             this.openLightboxHandler(mediaImg, media);
                         }
-                    }); 
+                    });     
 
                     // Ajoute un écouteur d'événements pour ouvrir la lightbox en appuyant sur la touche "Entrée"
                     mediaElement.addEventListener('keydown', (event) => {
@@ -155,3 +155,4 @@ class AppGallery {
 // Instance de l'application de galerie
 const appGallery = new AppGallery();
 appGallery.init();
+
