@@ -1,8 +1,21 @@
-@import url("photographer.css");
+@import url("photographerGallery.css");
 
-a{
+*, ::before, ::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+a {
     text-decoration: none;
     color: inherit;
+}
+
+button, a{
+    cursor: pointer;
+    outline: none;
+    border: none;
+    background-color: transparent;
 }
 
 body {
@@ -10,51 +23,103 @@ body {
     margin: 0;
 }
 
-header {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    height: 90px;
+:root{
+    --color-primary: #901C1C;
+    --color-secondary: #DB8876;
+    --color-tertiary: #D3573C;
+    --color-dark: #000;
+    --color-dark-medium: #757575;
+    --color-light: #fff;
+    --color-light-medium: #FAFAFA;
+    --color-label: #312E2E;
 }
 
-h1 {
-    color: #901C1C;
-    margin-right: 100px;
+.wrapper {
+    margin: 0 auto;
+    padding: 30px 20px 60px 20px;
+    max-width: 1400px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 120px;
+    height: 50px;
+}
+
+.logo_link {
+    position: relative;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.logo_link:focus:not(:hover){
+    outline: 2px solid var(--color-primary);
+}
+
+.logo_link::before{
+    content: "";
+    z-index: -1;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 10px;
+    height: 2px;
+    width: 0;
+    background-color: var(--color-primary);
+    transition: width .2s ease-in-out;
+}
+
+.logo_link:hover::before{
+    width: 80%;
 }
 
 .logo {
-    height: 50px;
-    margin-left: 100px;
+    width: clamp(13rem, 15vw, 20rem);
+}
+
+h1 {
+    color: var(--color-primary);
+    font-size: clamp(2rem, 3vw, 3.2rem);
+    font-weight: 100;
 }
 
 .photographers_section {
-    margin: 50px;
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-wrap: wrap;
-    justify-content: space-between;
-    text-align: center;
+    gap: 50px;
+    margin-top: 50px;
 }
 
 .photographer_card_wrap {
-    width: 30%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 50px;
+    width: 30%;
 }
 
 .photographer_link {
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 5px;
+}
+
+.photographer_link:hover .photographer_name::before{
+    width: 80%;
+}
+
+.photographer_link:focus:not(:hover){
+    outline: 2px solid var(--color-primary);
 }
 
 .portrait_wrap{
-    max-height: 200px;
-    max-width: 200px;
+    height: 200px;
+    width: 200px;
     aspect-ratio: 1 / 1;
     overflow: hidden;
     border-radius: 50%;
@@ -69,26 +134,78 @@ h1 {
 }
 
 .photographer_name {
-    color: #D3573C;
-    font-size: 36px;
+    color: var(--color-tertiary);
+    font-size: 2.5rem;
     text-align: center;
+    position: relative;
+    margin-top: 10px;
+}
+
+.photographer_name::before{
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0px;
+    height: 2px;
+    width: 0;
+    background-color: var(--color-secondary);
+    transition: width .2s ease-in-out;
 }
 
 .city_wrap, .tagline, .price{
     text-align: center;
     margin: 5px;
+    
 }
 
 .city_wrap{
-    font-size: 13px;
-    color: #901c1c;
+    font-size: 1.2rem;
+    color: var(--color-primary);
 }
 
 .tagline{
-    font-size: 10px;
+    font-size: 1rem;
 }
 
 .price{
-    font-size: 12px;
-    color: #757575;
+    font-size: 1.2rem;
+    color: var(--color-dark-medium);
+}
+
+@media screen and (max-width: 1243px) {
+    .photographer_link {
+        height: 350px;
+    }
+}
+
+@media screen and (max-width: 1040px) {
+    header{
+        flex-direction: column;
+    }
+    .photographers_section {
+        margin-top: 100px;
+        gap: 80px 0;
+    }
+    .photographer_card_wrap {
+        width: 45%;
+    }
+}
+
+@media screen and (max-width: 725px) {
+    header{
+        padding: 0;
+    }
+    .photographer_card_wrap {
+        width: 100%;
+    }
+    .photographer_link{
+        height: auto;
+    }
+}
+
+@media screen and (max-width: 445px) {
+    .wrapper{
+        padding: 10px;
+    }
 }

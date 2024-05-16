@@ -12,18 +12,17 @@
     <script src="https://kit.fontawesome.com/ab2870ff1f.js" crossorigin="anonymous"></script>
   </head>
   <body>
-    <header>
-      <a href="#" id="logo_link_home">
-        <img src="assets/images/logo.png" class="logo" alt="Fisheye Home page" lang="en"/>
-      </a>  
-      <h1 tabindex="0" aria-label="Nos photographes">Nos photographes</h1>
-    </header>
-    <main id="main">
-      <section class="photographers_section" aria-label="Bienvenue sur la galerie présentant nos photographes"></section>
-    </main>
-    
-    <script src="js/templates/photgrapherCard.js"></script>
-    <script src="js/api/api.js"></script>
-    <script src="js/app.js"></script>
+    <div class="wrapper">
+      <header>
+        <a href="#" class="logo_link" id="logo_link_home" tabindex="0">
+          <img src="assets/images/logo.png" class="logo" alt="Fisheye Home page" lang="en"/>
+        </a>  
+        <h1>Nos photographes</h1>
+      </header>
+      <main id="main">
+        <section class="photographers_section" aria-label="Bienvenue sur la galerie présentant nos photographes"></section>
+      </main>
+    </div>
+    <script type="module" src="js/index.js"></script>
   </body>
 </html>
