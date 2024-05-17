@@ -21,3 +21,4 @@ async function getPhotographerData(photgapherId) {
         contactName.textContent = photographer.name;
     };
 };
+
