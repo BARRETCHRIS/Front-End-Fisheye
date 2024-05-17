@@ -1,0 +1,551 @@
+#contact_modal {
+    display: none;
+}
+
+/* PHOTOGRAPHER HEADER */
+
+.photograph-header {
+    background-color: var(--color-light-medium);
+    margin: 50px 0;
+    padding: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+}
+
+.photograph-header .surname, .photograph-header .btn-wrap, .photograph-header .portrait{
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+}
+
+.photograph-header .surname{
+    text-align: left;
+    /* width: 30%; */
+}
+
+.photograph-header .surname .photographer_name{
+    margin: 0;
+    font-size: 55px;
+    color: #D3573C;
+}
+
+.photograph-header .surname .photographer_name, .photograph-header .surname .city_wrap, .photograph-header .surname .tagline{
+    text-align: left;
+}
+
+.photograph-header .btn-wrap{
+    text-align: center;
+}
+
+
+.photograph-header .portrait {
+    align-items: flex-end;
+    /* width: 40%; */
+}
+
+.portrait img{
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Glabal for Button Contact and Submit Contact form */
+
+.contact_button, .btn-submit {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    padding: 11px;
+    width: 170px;
+    height: 70px;
+    border: none;
+    background: #901C1C;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 300ms ease-in-out ;
+}
+
+.contact_button:hover,.btn-submit:hover, .contact_button:focus,.btn-submit:focus{
+    color: black;
+    background: #DB8876;
+    transition: background 300ms ease-in-out ;
+}
+
+.btn-submit:hover{
+    border: #312E2E 1px solid;
+}
+
+/* FILTER */
+/* MEDIA FILTER */
+.main_content_filter {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    gap: 10px;
+}
+
+h2{
+    font-weight: 100;
+    font-size: 1.2rem;
+}
+
+.filter_section{
+    position: relative;
+    height: 100%;
+}
+
+.dropdown {
+    z-index: 10;
+    position: absolute;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.rotate{
+    transform: rotate(180deg);
+}
+
+.dropdown_content {
+    max-height: 0;
+    background-color: var(--color-primary);
+    transition: max-height .1s ease-in-out;
+}
+
+.dropdown_content li {
+    position: relative;
+    width: 150px;
+}
+
+.dropdown_content li::before{
+    content: "";
+    position: absolute;
+    width:100%;
+    height: 1px;
+    background-color: var(--color-light);
+}
+
+.btn_drop,
+.dropdown_content li button{
+    height: 50px;
+    padding: 0 15px;
+    font-size: 1.2rem;
+    color: var(--color-light);
+}
+
+.btn_drop {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 150px;
+    background-color: var(--color-primary);
+}
+
+.dropdown_content li button {
+    width: 100%;
+    text-align: left;
+}
+
+.dropdown_content li button:hover,
+.dropdown_content li button:focus,
+.btn_drop:hover,
+.btn_drop:focus{
+    background-color: var(--color-secondary);
+    color: var(--color-black);
+}
+
+.curtain_effect {
+    max-height: 200px;
+}
+
+/* GALLERY MEDIAS */
+
+.portfolio_section{
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    margin-top: 40px;
+}
+
+.gallery{
+    /* position: relative;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px 60px; */
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 50px;
+}
+
+.gallery_card {
+    width: 30%;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.animeCard{
+    animation: fade .2s ease-in-out;
+}
+
+@keyframes fade{
+    from{
+        opacity: 0;
+    } to{
+        opacity: 1;
+    }   
+}
+
+.gallery_card a {
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.media_wrap {
+    height: 260px;
+    transition: all .2s ease-in-out;
+}
+.gallery_card a:hover figure{
+    transform: scale(1.05);
+}
+
+.gallery_card a:focus:not(:hover){
+    outline: 2px solid var(--color-secondary);
+}
+
+.media{
+    height: 100%;
+    width: 100%;
+    border-radius: 5px;
+    will-change: transform;
+    object-fit: cover;
+}
+
+.media_caption {
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.media_caption h2{
+    font-weight: 100;
+    color: var(--color-primary);
+    font-size: 1.6rem;
+}
+
+.media_caption div{ 
+    align-self: flex-start;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: var(--color-primary);
+    font-size: 1.6rem;
+}
+
+.btn_like{
+    border-radius: 5px;
+    padding: 0 1px;
+    font-size: 1.6rem;
+    color: var(--color-primary);
+}
+
+.btn_like:focus-visible:not(:hover){
+    outline: 2px solid var(--color-primary);
+}
+
+.liked{
+    color: var(--color-secondary);
+}
+
+/* INFOS TOTAL LIKES AND PRICE */
+
+.infos_bottom{
+    width: 250px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-around;
+    background: #DB8876; 
+    border-radius: 5px;
+    position: fixed;
+    bottom: 0;  
+    right: 10px;
+}
+
+/* Global for Modal Contact Form and Lightbox */
+
+.btn_close:hover::before{
+    color: var(--color-primary);
+}
+.btn_close:focus:not(:hover)::before{
+    outline: 2px solid var(--color-primary);
+}
+
+.btn_close::before{
+    content: "\f00d";
+    font-family: "Font Awesome 5 Free";
+    padding: 5px;
+    border-radius: 5px;
+    font-weight: 900;
+    color: var(--color-light);
+    font-size: 2rem;
+}
+
+/* MODAL CONTACT FORM */
+.modal_form {
+    position: relative;
+    border-radius: 5px;
+    background-color: var(--color-secondary);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 20px;
+    width: 90%;
+    max-width: 600px;
+    opacity: 0;
+    transform: translateY(-150px);
+    animation: fadeIn .3s ease-in-out forwards;
+}
+
+.modal_form_title{
+    width: 100%;
+    font-size: 2.2rem;
+}
+
+.modal_form_title h2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: normal;
+    font-size: 2.2rem;
+}
+
+.btn_close:hover::before{
+    color: var(--color-primary);
+}
+.btn_close:focus:not(:hover)::before{
+    outline: 2px solid var(--color-primary);
+}
+
+.btn_close::before{
+    content: "\f00d";
+    font-family: "Font Awesome 5 Free";
+    padding: 5px;
+    border-radius: 5px;
+    font-weight: 900;
+    color: var(--color-light);
+    font-size: 2rem;
+}
+
+.modal_form form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.form_content {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.form_content label {
+    color: var(--color-label);
+    font-size: 1.4rem;
+}
+
+.form_content input {
+    height: 50px;
+    padding-left: 10px;
+    border: none;
+    border-radius: 5px;
+}
+
+.form_content textarea {
+    border-radius: 5px;
+    height: 150px;
+    resize: none;
+    padding: 10px;
+}
+
+.form_content span{
+    color: var(--color-dark);
+    font-size: 1.2rem;
+}
+
+.form_content input:invalid:focus,
+.form_content textarea:invalid:focus {
+    outline: 2px solid var(--color-primary);
+}
+
+/* Lightbox */
+
+.wrap{
+    z-index: 10;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.5); 
+}
+
+.lightbox{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 1000px;
+    height: 90%;
+    max-height: 1000px;
+    background-color: var(--color-light);
+    padding: 25px 60px 0;
+    border-radius: 5px;
+    opacity: 0;
+    transform: translateY(-150px);
+    animation: fadeIn .3s ease-in-out forwards;
+}
+
+.lightbox_media{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.lightbox_media figcaption{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    font-size: 1.6rem;
+    color: var(--color-primary);
+}
+
+.lightbox_media img,
+.lightbox_media video{
+    width: 100%;
+    height: calc(100% - 50px);
+}
+
+.lightbox_media video:focus{
+    outline: 2px solid var(--color-primary);
+}
+
+.btn_close_lightbox{
+    z-index: 100;
+    position: absolute;
+    top: 25px;
+    right: 5px; 
+}
+
+.btn_close_lightbox::before{
+    font-size: 2rem;
+    color: var(--color-primary);
+}
+
+.btn_previous,
+.btn_next{
+    z-index: 100;
+    position: absolute;
+    top: 50%;
+    border-radius: 5px;
+    transform: translateY(-50%);
+    padding: 5px;
+}
+
+.btn_next{
+    right: 10px;
+}
+
+.btn_previous{
+    left: 10px;
+}
+
+.btn_next::before,
+.btn_previous::before{
+    font-family:  "Font Awesome 5 Free";
+    font-weight: 600;   
+    font-size: 2rem;
+    color: var(--color-primary);
+}
+
+.btn_next::before{
+    content: "\f054";
+}
+
+.btn_previous::before{
+    content: "\f053";
+}
+
+.btn_previous:focus-visible:not(:hover),
+.btn_next:focus-visible:not(:hover){
+    outline: 2px solid var(--color-primary);
+}
+
+.btn_previous:hover::before,   
+.btn_next:hover::before,
+.btn_close_lightbox:hover::before{
+    color: var(--color-secondary);
+}
+
+.invalid{
+    outline: 2px solid var(--color-primary);
+}
+
+.valid{
+    outline: 2px solid green;
+}
+
+.btn_next.active::before,
+.btn_previous.active::before,
+.btn_close_lightbox.active::before{
+    color: var(--color-secondary);
+}
+
+/* ANIMATION */
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media screen and (max-width: 1040px) {
+    .gallery_card{
+        width: 42%;
+    }
+}
+
+@media screen and (max-width: 920px) {
+    .photograph-header{
+        flex-direction: column-reverse;
+        justify-content: space-around;
+        gap: 30px;
+    }    
+    .photograph-header .surname, .photograph-header .btn-wrap, .photograph-header .portrait{
+        width: auto;
+    }
+    .photograph-header .surname .photographer_name, .photograph-header .surname .city_wrap, .photograph-header .surname .tagline{
+        text-align: center;
+    }
+    .gallery{
+        justify-content: space-around;
+        gap: 20px;
+    }
+    .gallery_card{
+        width: 70%;
+
+    }
+}
